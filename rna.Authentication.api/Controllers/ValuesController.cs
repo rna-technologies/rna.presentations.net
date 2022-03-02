@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace rna.Authentication.api.Controllers
+﻿namespace rna.Authentication.api.Controllers
 {
     //[Authorize]
     [Route("api/[controller]")]

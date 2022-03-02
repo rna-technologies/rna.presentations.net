@@ -1,7 +1,5 @@
 ﻿//using Authorization.Application.Controllers;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using rna.Core.Infrastructure.Logics.Users.Verifications.Models;
 using rna.Core.Infrastructure.Logics.Users.Verifications.ContactSignInVerification;
 using rna.Core.Infrastructure.Logics.Users.SignIns.PasswordSignIn;

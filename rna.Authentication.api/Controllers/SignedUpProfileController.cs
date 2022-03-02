@@ -1,6 +1,4 @@
 ﻿//using Authorization.Application.Controllers;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using rna.Core.Infrastructure.Logics.Users.Models.EditModels;
 
 namespace rna.Authentication.api.Controllers
