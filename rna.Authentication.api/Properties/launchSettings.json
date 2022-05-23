@@ -16,7 +16,7 @@
       },
       "nativeDebugging": true
     },
-    "ApiBearerServer": {
+    "rna.Authentication.api": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/values",

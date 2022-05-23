@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Reflection;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -10,6 +11,9 @@ namespace rna.Authentication.api
     {
         public static void Main(string[] args)
         {
+#if DEBUG
+            Console.Title = Assembly.GetCallingAssembly().GetName().Name ?? "App";
+#endif
             BuildWebHost(args).Run();
         }
 

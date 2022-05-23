@@ -4,7 +4,7 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<LangVersion>preview</LangVersion>
 		<!--<TieredCompilation>true</TieredCompilation>-->
-		<UserSecretsId>aspnet-ApiBearerServer-44C195A2-B80F-4D4B-8BB1-4AAF0CB26BFA</UserSecretsId>
+		<UserSecretsId>aspnet-rna.Authentication.api-44C195A2-B80F-4D4B-8BB1-4AAF0CB26BFA</UserSecretsId>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -39,7 +39,7 @@
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
 
-		<PackageReference Include="rna.Core.Infrastructure" Version="0.1.14" />
+		<PackageReference Include="rna.Core.Infrastructure" Version="0.1.16" />
 	</ItemGroup>
 
 </Project>
