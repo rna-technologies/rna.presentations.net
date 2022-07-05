@@ -11,3 +11,4 @@ global using rna.Core.Identity.Domain;
 global using rna.Filters.Extensions;
 global using rna.Core.Base.Infrastructure.Model;
 global using rna.Base.Extensions;
+global using rna.Core.Identity.Infrastructure;
