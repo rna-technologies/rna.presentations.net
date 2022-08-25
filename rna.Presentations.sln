@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rna.Authentication.api", "rna.Authentication.api\rna.Authentication.api.csproj", "{EC29B69A-76CA-4A48-B6BB-D22C0872012A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rna.Core.Infrastructure", "..\rna.Packages\Core\Infrastructure\rna.Core.Infrastructure\rna.Core.Infrastructure.csproj", "{09E7E06D-6FB3-4979-A533-C2C9E69F62A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{EC29B69A-76CA-4A48-B6BB-D22C0872012A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC29B69A-76CA-4A48-B6BB-D22C0872012A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC29B69A-76CA-4A48-B6BB-D22C0872012A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09E7E06D-6FB3-4979-A533-C2C9E69F62A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09E7E06D-6FB3-4979-A533-C2C9E69F62A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09E7E06D-6FB3-4979-A533-C2C9E69F62A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09E7E06D-6FB3-4979-A533-C2C9E69F62A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

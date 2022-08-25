@@ -2,6 +2,7 @@
 
 
 using rna.Core.Identity.Infrastructure.Pageables;
+using rna.Core.Infrastructure.CustomAttribute;
 
 namespace rna.Authentication.api.Controllers.Authorizations
 {

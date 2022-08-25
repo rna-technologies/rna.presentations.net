@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Autofac;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +26,8 @@ namespace rna.Authentication.api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddOptions();
+
             var modelBuilder = new ModelBuilder();
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(Startup).Assembly);
             modelBuilder.Entity<GroupRelationModel>().ToTable(g => g.ExcludeFromMigrations());
@@ -44,6 +47,14 @@ namespace rna.Authentication.api
 
         }
 
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            // Register your own things directly with Autofac here. Don't
+            // call builder.Populate(), that happens in AutofacServiceProviderFactory
+            // for you.
+            builder.RegisterModule(new AutofacAppModule());
+        }
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
         {
@@ -59,7 +70,7 @@ namespace rna.Authentication.api
 
             //app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowCredentials().AllowAnyHeader());
 
-            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowCredentials().SetIsOriginAllowedToAllowWildcardSubdomains().AllowAnyOrigin().WithOrigins(origins));
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("*"));
 
 
             //app.UseAuthentication();
