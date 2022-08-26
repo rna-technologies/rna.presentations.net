@@ -66,11 +66,11 @@ namespace rna.Authentication.api
 
             var origins = Configuration.GetSection("ClientBaseUrls").Get<string[]>();
 
-            //app.UseCors(x => x.WithOrigins(origins).AllowAnyMethod().AllowCredentials().AllowAnyHeader());
+            app.UseCors(x => x.WithOrigins(origins).AllowAnyMethod().AllowCredentials().AllowAnyHeader());
 
             //app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowCredentials().AllowAnyHeader());
 
-            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("*"));
+            //app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("*"));
 
 
             //app.UseAuthentication();
