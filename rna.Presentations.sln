@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rna.Authentication.api", "r
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rna.Core.Infrastructure", "..\rna.Packages\Core\Infrastructure\rna.Core.Infrastructure\rna.Core.Infrastructure.csproj", "{09E7E06D-6FB3-4979-A533-C2C9E69F62A1}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rna.Core.Base.Infrastructure", "..\rna.Packages\Core\Infrastructure\Base\rna.Core.Base.Infrastructure\rna.Core.Base.Infrastructure.csproj", "{CA1B862B-3EA0-4BCA-97E8-8D72A4159D06}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{09E7E06D-6FB3-4979-A533-C2C9E69F62A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09E7E06D-6FB3-4979-A533-C2C9E69F62A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09E7E06D-6FB3-4979-A533-C2C9E69F62A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA1B862B-3EA0-4BCA-97E8-8D72A4159D06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA1B862B-3EA0-4BCA-97E8-8D72A4159D06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA1B862B-3EA0-4BCA-97E8-8D72A4159D06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA1B862B-3EA0-4BCA-97E8-8D72A4159D06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
