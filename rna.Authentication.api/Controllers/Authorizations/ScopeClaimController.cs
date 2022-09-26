@@ -21,7 +21,7 @@ namespace rna.Authentication.api.Controllers.Authorizations
         [HttpGet("user-groups")]
         public async Task<IActionResult> GetUserScopeGroup([FromQuery] string userId, [FromQuery] UrlQueryParams param)
         {
-            param.SearchFields = new string[] { "GroupName", "AccountTypeName", "AppName" };
+            param.SearchFields = new string[] { "GroupName", "DepartmentName", "AppName" };
             param.OrderByFields = param.SearchFields;
             return Ok(await Mediator.Send(new GetUserScopeGroupPage
             {
@@ -50,7 +50,7 @@ namespace rna.Authentication.api.Controllers.Authorizations
         [HttpGet("logged-user-account-types")]
         public async Task<IActionResult> GeLoggerAccountTypes([FromQuery] int appId, [FromQuery] int groupId, [FromQuery] UrlQueryParams param)
         {
-            return Ok(await Mediator.Send(new GetLoggerScopeAccountTypePage
+            return Ok(await Mediator.Send(new GetLoggerScopeDepartmentPage
             {
                 AppId = appId,
                 GroupId = groupId,
@@ -59,9 +59,13 @@ namespace rna.Authentication.api.Controllers.Authorizations
         }
 
         [HttpGet("logged-user-roles")]
-        public async Task<IActionResult> GeLoggerScopeRoles([FromQuery] UrlQueryParams param)
+        public async Task<IActionResult> GeLoggerScopeRoles([FromQuery] int appId, [FromQuery] UrlQueryParams param)
         {
-            return Ok(await Mediator.Send(new GetLoggerScopeRolePage { Params = param }).ConfigureAwait(false));
+            return Ok(await Mediator.Send(new GetLoggerScopeRolePage
+            {
+                AppId = appId,
+                Params = param
+            }).ConfigureAwait(false));
         }
 
         [HttpPost]
