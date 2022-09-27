@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using rna.Core.Identity.Infrastructure;
 
@@ -11,9 +12,10 @@ using rna.Core.Identity.Infrastructure;
 namespace Identity.Application.Migrations
 {
     [DbContext(typeof(SuiteIdentityContext))]
-    partial class SuiteIdentityContextModelSnapshot : ModelSnapshot
+    [Migration("20220927114154_ForAuthorization_Field")]
+    partial class ForAuthorization_Field
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -595,7 +597,7 @@ namespace Identity.Application.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("RegistrationInfo", (string)null);
+                    b.ToTable("RegisterationInfo");
                 });
 
             modelBuilder.Entity("rna.Core.Identity.Domain.Role", b =>
@@ -841,7 +843,7 @@ namespace Identity.Application.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("User", (string)null);
+                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("rna.Core.Identity.Infrastructure.Models.GroupRelationModel", b =>

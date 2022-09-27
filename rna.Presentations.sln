@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rna.Core.Infrastructure", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rna.Core.Base.Infrastructure", "..\rna.Packages\Core\Infrastructure\Base\rna.Core.Base.Infrastructure\rna.Core.Base.Infrastructure.csproj", "{CA1B862B-3EA0-4BCA-97E8-8D72A4159D06}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rna.Core.Identity.Domain", "..\rna.Packages\Core\Domain\rna.Core.Identity.Domain\rna.Core.Identity.Domain.csproj", "{41EB6102-280D-4393-8716-D5E920F5F625}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rna.Filters.Extensions", "..\rna.Packages\Tools\Filters\rna.Filters.Extensions\rna.Filters.Extensions.csproj", "{6D4F9862-B139-40F3-AA05-D2D27ACACAB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{CA1B862B-3EA0-4BCA-97E8-8D72A4159D06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA1B862B-3EA0-4BCA-97E8-8D72A4159D06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA1B862B-3EA0-4BCA-97E8-8D72A4159D06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41EB6102-280D-4393-8716-D5E920F5F625}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41EB6102-280D-4393-8716-D5E920F5F625}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41EB6102-280D-4393-8716-D5E920F5F625}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41EB6102-280D-4393-8716-D5E920F5F625}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D4F9862-B139-40F3-AA05-D2D27ACACAB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D4F9862-B139-40F3-AA05-D2D27ACACAB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D4F9862-B139-40F3-AA05-D2D27ACACAB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D4F9862-B139-40F3-AA05-D2D27ACACAB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
