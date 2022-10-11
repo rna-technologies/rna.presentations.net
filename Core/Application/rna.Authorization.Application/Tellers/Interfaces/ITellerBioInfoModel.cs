@@ -1,7 +1,6 @@
-﻿namespace rna.Authorization.Application.Interfaces
+﻿namespace rna.Authorization.Application.Tellers;
+
+public interface ITellerBioInfoModel
 {
-    public interface ITellerBioInfoModel
-    {
-        string UserId { get; set; }
-    }
+    string UserId { get; set; }
 }

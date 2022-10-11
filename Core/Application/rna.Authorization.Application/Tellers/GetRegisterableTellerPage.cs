@@ -1,13 +1,27 @@
-﻿using System;
-using rna.Authorization.Application.Models;
-using MediatR;
+﻿using rna.Core.Identity.Infrastructure.Extensions.RelatedUser;
 
-namespace rna.Authorization.Application
+namespace rna.Authorization.Application.Tellers;
+
+//using Resource.Infrastructure.DbSetModels;
+public class GetRegisterableTellerPage : IRequest<PaginationInfo<RegisterableTellerModel>>
 {
-    //using Resource.Infrastructure.DbSetModels;
-    public class GetRegisterableTellerPage : IRequest<PaginationInfo<RegisterableTellerModel>>
+    public DateTime? Date { get; set; }
+    public UrlQueryParams Params { get; set; }
+}
+
+public class GetRegisterableTellerPageHandler : BaseRequestHandler<GetRegisterableTellerPage, PaginationInfo<RegisterableTellerModel>>
+{
+    public GetRegisterableTellerPageHandler(IServiceProvider serviceProvider) : base(serviceProvider) { }
+    public override async Task<PaginationInfo<RegisterableTellerModel>> Handle(GetRegisterableTellerPage request, CancellationToken cancellationToken)
     {
-        public DateTime? Date { get; set; }
-        public UrlQueryParams Params { get; set; }
+
+        var tellers = (await Mediator.Send(new GetRegisterableTellerQuery
+        {
+            Date = request.Date ?? DateTime.Now,
+            Params = request.Params
+        }, cancellationToken).ConfigureAwait(false))
+        .Map<RegisterableTellerModel>().ToList();
+
+        return tellers.GetRelatedUserInfoPage(IdentityService, request.Params);
     }
 }

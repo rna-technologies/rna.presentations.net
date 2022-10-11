@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="rna.Core.Infrastructure" Version="0.2.4-rc-233" />
+    <ProjectReference Include="..\..\..\..\rna.Packages\Core\Infrastructure\rna.Core.Infrastructure\rna.Core.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

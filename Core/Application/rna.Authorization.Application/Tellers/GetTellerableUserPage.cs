@@ -1,10 +1,18 @@
-﻿using rna.Authorization.Application.Models;
-using MediatR;
+﻿namespace rna.Authorization.Application.Tellers;
 
-namespace rna.Authorization.Application
+public class GetTellerableUserPage : IRequest<PaginationInfo<CustomUserModel>>
 {
-    public class GetTellerableUserPage : IRequest<PaginationInfo<CustomUserModel>>
+    public required UrlQueryParams Params { get; set; }
+}
+public class GetTellerableUserPageHandler : BaseRequestHandler<GetTellerableUserPage, PaginationInfo<CustomUserModel>>
+{
+    public GetTellerableUserPageHandler(IServiceProvider serviceProvider) : base(serviceProvider) { }
+    public override async Task<PaginationInfo<CustomUserModel>> Handle(GetTellerableUserPage request, CancellationToken cancellationToken)
     {
-        public UrlQueryParams Params { get; set; }
+        var queryable = await Mediator.Send(new GetTellerableUserQuery(), cancellationToken).ConfigureAwait(false);
+
+        var pageable = await queryable.ToPageableAsync(IdentityService.DbContext, request.Params);
+
+        return pageable;
     }
 }
