@@ -9,7 +9,7 @@ using rna.Core.Identity.Infrastructure;
 
 #nullable disable
 
-namespace Identity.Application.Migrations
+namespace rna.Authorization.Application.Migrations
 {
     [DbContext(typeof(SuiteIdentityContext))]
     [Migration("20221010143123_teller_registration")]

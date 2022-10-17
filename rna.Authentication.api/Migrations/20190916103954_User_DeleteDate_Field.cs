@@ -1,7 +1,6 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Identity.Application.Migrations
+namespace rna.Authorization.Application.Migrations
 {
     public partial class User_DeleteDate_Field : Migration
     {

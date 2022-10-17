@@ -50,6 +50,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\rna.Packages\Core\Infrastructure\rna.Core.Infrastructure\rna.Core.Infrastructure.csproj" />
+	  <ProjectReference Include="..\Core\Application\rna.Authorization.Application\rna.Authorization.Application.csproj" />
 	</ItemGroup>
 
 </Project>

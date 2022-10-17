@@ -18,9 +18,9 @@ public class VerifyIsOpenedTellerHandler : BaseRequestHandler<VerifyIsOpenedTell
         if (Configuration.VerifyIsPowerUser(LoggedUserId)) return Unit.Task;
 
         var verified = request.OpenDate is null ?
-            ResourceService.Entity<TellerRegister>()
+            Identity.Set<TellerRegister>()
             .Any(p => p.Teller.UserId == request.UserId && p.CloseDate == null) :
-            ResourceService.Entity<TellerRegister>()
+            Identity.Set<TellerRegister>()
             .Any(p => p.Teller.UserId == request.UserId && p.OpenDate.Date == request.OpenDate.Value.Date && p.CloseDate == null);
 
         if (!verified && !request.ThrowExceptionIfVerified) request.ThrowException("Teller registeration has been closed or has not been registered");

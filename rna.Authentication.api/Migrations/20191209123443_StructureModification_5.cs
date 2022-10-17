@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Identity.Application.Migrations
+namespace rna.Authorization.Application.Migrations
 {
     public partial class StructureModification_5 : Migration
     {

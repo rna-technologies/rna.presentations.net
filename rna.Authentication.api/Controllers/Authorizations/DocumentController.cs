@@ -22,7 +22,7 @@ namespace rna.Authentication.api.Controllers.Authorizations
         [HttpGet]
         public async Task<IActionResult> GetAction([FromQuery] UrlQueryParams param)
         {
-            var queryable = IdentityService.Entity<Document>().Get()
+            var queryable = Identity.Set<Document>().Get()
                 .Where(d => d.AppId == Scope.AppId);
             if (param?.Id is { } id)
             {
@@ -30,7 +30,7 @@ namespace rna.Authentication.api.Controllers.Authorizations
                 return Ok(document);
             }
 
-            var pagenation = queryable.ToPageable<DocumentPageable>(IdentityService.DbContext, param);
+            var pagenation = queryable.ToPageable<DocumentPageable>(Identity.DbContext, param);
 
             return Ok(pagenation);
         }
@@ -54,8 +54,6 @@ namespace rna.Authentication.api.Controllers.Authorizations
         [HttpGet("fields/data/list")]
         public async Task<IActionResult> GetFieldsDataList([FromQuery] UrlQueryParams param)
         {
-            //var dataControllerDocuments = (await ResourceDocumentClient.GetDocumentsAsync<AppDocument>(SelectedApp, "controllers")
-            //         .ConfigureAwait(false));
             var dataControllerDocuments = (await FileExtension.GetControllerDocumentsAsync().ConfigureAwait(false)).ToList();
 
             foreach (var m in FileExtension.GetControllerDocuments())
@@ -64,7 +62,7 @@ namespace rna.Authentication.api.Controllers.Authorizations
                     dataControllerDocuments.Add(m);
             }
 
-            var savedDocuments = IdentityService.Entity<Document>().Map<ControllerDocument>().ToList();
+            var savedDocuments = Identity.Set<Document>().Map<ControllerDocument>().ToList();
 
             var notSavedDocuments = dataControllerDocuments.AsQueryable()
                 .WhereNotAny(savedDocuments.Select(s => s.Name).ToArray(), d => d.Name)
@@ -94,9 +92,10 @@ namespace rna.Authentication.api.Controllers.Authorizations
                     dataControllerDocuments.Add(m);
             }
 
-            var savedDocuments = IdentityService.Entity<Document>().Get()
+            var savedDocuments = Identity.Set<Document>()
                 .Where(d => d.AppId == Scope.AppId)
-                .ToList().Map<List<ControllerDocument>>();
+                .Map<ControllerDocument>()
+                .ToList();
 
             var notSavedDocuments = dataControllerDocuments.AsQueryable()
                 .WhereNotAny(savedDocuments.Select(s => s.Name).ToArray(), d => d.Name)
@@ -106,32 +105,13 @@ namespace rna.Authentication.api.Controllers.Authorizations
             return Ok(notSavedDocuments);
         }
 
-        //[HttpGet("false-saved/data/list")]
-        //public async Task<IActionResult> GetNonExistingDataList([FromQuery] UrlQueryParams param)
-        //{
-        //    var dataControllerDocuments = await ResourceDocumentClient.GetDocumentsAsync<AppDocument>(SelectedApp)
-        //             .ConfigureAwait(false);
-
-        //    foreach (var m in FileExtension.GetControllerDocuments())
-        //    {
-        //        if (!dataControllerDocuments.Any(d => d.Name == m.Name))
-        //            dataControllerDocuments.Add(m.Map<AppDocument>());
-        //    }
-
-        //    var savedDocuments = IdentityService.Entity<Document>().Get().ToList().Map<List<AppDocument>>();
-
-        //    var falseSavedDocuments = savedDocuments.Except(dataControllerDocuments).OrderBy(ne => ne.Name).ToList();
-
-        //    return Ok(falseSavedDocuments);
-        //}
-
         [HttpPost]
         public async Task<IActionResult> CreateModel([FromBody] Document model, [FromQuery] UrlQueryParams param)
         {
             try
             {
                 model.AppId = Scope.AppId;
-                model = await IdentityService.CreateAsync(model).ConfigureAwait(false);
+                model = await Identity.CreateAsync(model).ConfigureAwait(false);
 
                 return Created("Document", new { model.Id });
             }
@@ -147,7 +127,7 @@ namespace rna.Authentication.api.Controllers.Authorizations
             try
             {
                 model.AppId = Scope.AppId;
-                await IdentityService.UpdateAsync(model).ConfigureAwait(false);
+                await Identity.UpdateAsync(model).ConfigureAwait(false);
                 return Ok(model.Id);
             }
             catch (Exception ex)

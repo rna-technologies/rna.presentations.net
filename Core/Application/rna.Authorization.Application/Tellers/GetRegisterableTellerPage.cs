@@ -18,10 +18,9 @@ public class GetRegisterableTellerPageHandler : BaseRequestHandler<GetRegisterab
         var tellers = (await Mediator.Send(new GetRegisterableTellerQuery
         {
             Date = request.Date ?? DateTime.Now,
-            Params = request.Params
         }, cancellationToken).ConfigureAwait(false))
         .Map<RegisterableTellerModel>().ToList();
 
-        return tellers.GetRelatedUserInfoPage(IdentityService, request.Params);
+        return tellers.GetRelatedUserInfoPage(Identity, request.Params);
     }
 }

@@ -11,7 +11,7 @@ public class GetRegisterableTellerQueryHandler : BaseRequestHandler<GetRegistera
     public GetRegisterableTellerQueryHandler(IServiceProvider serviceProvider) : base(serviceProvider) { }
     public override Task<IQueryable<RegisterableTellerModel>> Handle(GetRegisterableTellerQuery request, CancellationToken cancellationToken)
     {
-        return Task.FromResult(ResourceService.Entity<Teller>()
+        return Task.FromResult(Identity.Set<Teller>()
             .Where(t => !t.IsDeleted)
             .Select(t => new RegisterableTellerModel
             {

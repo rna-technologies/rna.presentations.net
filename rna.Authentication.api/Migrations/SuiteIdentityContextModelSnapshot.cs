@@ -4,11 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using rna.Core.Identity.Infrastructure;
 
 #nullable disable
 
-namespace Identity.Application.Migrations
+namespace rna.Authorization.Application.Migrations
 {
     [DbContext(typeof(SuiteIdentityContext))]
     partial class SuiteIdentityContextModelSnapshot : ModelSnapshot

@@ -4,7 +4,6 @@ public class OpenTellerRegister : IRequest<Unit>
 {
     public DateTime? Date { get; set; }
     public int TellerId { get; set; }
-    public required UrlQueryParams Params { get; set; }
 }
 
 public class OpenTellerRegisterHandler : BaseRequestHandler<OpenTellerRegister, Unit>
@@ -14,8 +13,7 @@ public class OpenTellerRegisterHandler : BaseRequestHandler<OpenTellerRegister, 
     {
         request.Date ??= DateTime.Now;
 
-
-        var isOpened = ResourceService.Entity<TellerRegister>()
+        var isOpened = Identity.Set<TellerRegister>()
             .Any(r => r.TellerId == request.TellerId && r.GroupId == SelectedGroupId && r.CloseDate == null);
 
         if (isOpened) request.ThrowException("Teller has already been Registered. Please close the previous register");
@@ -29,7 +27,7 @@ public class OpenTellerRegisterHandler : BaseRequestHandler<OpenTellerRegister, 
             RegistererId = LoggedUserId
         };
 
-        await ResourceService
+        await Identity
             .CreateAsync(register)
             .ConfigureAwait(false);
 

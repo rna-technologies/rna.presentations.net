@@ -11,7 +11,7 @@ public class GetTellerableUserPageHandler : BaseRequestHandler<GetTellerableUser
     {
         var queryable = await Mediator.Send(new GetTellerableUserQuery(), cancellationToken).ConfigureAwait(false);
 
-        var pageable = await queryable.ToPageableAsync(IdentityService.DbContext, request.Params);
+        var pageable = await queryable.ToPageableAsync(Identity.DbContext, request.Params);
 
         return pageable;
     }

@@ -3,8 +3,6 @@
 public class CloseTellerRegister : IRequest<Unit>
 {
     public int TellerId { get; set; }
-    public decimal MoneyAtHand { get; set; }
-    //public UrlQueryParams Params { get; set; }
 }
 
 public class CloseTellerRegisterHandler : BaseRequestHandler<CloseTellerRegister, Unit>
@@ -14,9 +12,7 @@ public class CloseTellerRegisterHandler : BaseRequestHandler<CloseTellerRegister
     {
         request.ThrowArgumentExceptionFor(r => r.TellerId == 0);
 
-        var tellerRegisterSet = IdentityService.Set<TellerRegister>();
-
-        var registers = tellerRegisterSet
+        var registers = Identity.Set<TellerRegister>()
             .AsNoTracking()
             .Where(r => r.TellerId == request.TellerId && r.GroupId == SelectedGroupId && r.CloseDate == null)
             .ToList();
@@ -27,10 +23,7 @@ public class CloseTellerRegisterHandler : BaseRequestHandler<CloseTellerRegister
             register.CloserId = LoggedUserId;
         }
 
-
-        ResourceService.UpdateRangeWithoutSaving(registers);
-
-        ResourceService.DbContext.SaveChanges();
+        Identity.UpdateRange(registers);
 
         return Unit.Task;
     }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Identity.Application.Migrations
+namespace rna.Authorization.Application.Migrations
 {
     public partial class Document_Unique_IsRequired_Name : Migration
     {

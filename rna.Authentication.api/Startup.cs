@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using rna.Authorization.Application.Tellers;
 using rna.Core.Identity.Infrastructure.Models;
 //using Resource.Application;
 using rna.Core.Infrastructure.Logics.Users.Verifications.ContactSignInVerification;
@@ -40,6 +41,7 @@ namespace rna.Authentication.api
             });
 
             services.AddMediatR(typeof(VerifyUserEmailHandler).GetTypeInfo().Assembly);
+            services.AddMediatR(typeof(GetRegisterableTellerPage).GetTypeInfo().Assembly);
 
             services.AddAuthorization();
 

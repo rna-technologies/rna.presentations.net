@@ -4,6 +4,7 @@ namespace rna.Authorization.Application.Tellers;
 
 public class GetClosurableTellerByRegisterPage : IRequest<PaginationInfo<ClosurableTellerModel>>
 {
+    public int? AppId { get; set; }
     public UrlQueryParams Params { get; set; }
 }
 public class GetClosurableTellerByRegisterPageHandler : BaseRequestHandler<GetClosurableTellerByRegisterPage, PaginationInfo<ClosurableTellerModel>>
@@ -11,8 +12,9 @@ public class GetClosurableTellerByRegisterPageHandler : BaseRequestHandler<GetCl
     public GetClosurableTellerByRegisterPageHandler(IServiceProvider serviceProvider) : base(serviceProvider) { }
     public override Task<PaginationInfo<ClosurableTellerModel>> Handle(GetClosurableTellerByRegisterPage request, CancellationToken cancellationToken)
     {
-        var groupIds = IdentityService.GetChildrenGroups(SelectedGroupId.Value, true).Select(g => g.Id).ToList();
-        var result = IdentityService.Entity<TellerRegister>()
+        var groupIds = Identity.GetChildrenGroups(SelectedGroupId!.Value, true).Select(g => g.Id).ToList();
+        var result = Identity.Set<TellerRegister>()
+            .Where(r => r.Teller.AppId == (request.AppId ?? Scope.AppId))
             .Where(r => r.CloseDate == null)
             .FindAny(groupIds, r => r.GroupId)
             .Select(g => new ClosurableTellerModel
@@ -41,7 +43,7 @@ public class GetClosurableTellerByRegisterPageHandler : BaseRequestHandler<GetCl
                 TellerRegisterId = g.Id,
                 UserId = g.Teller.UserId
             }).ToList()
-            .GetRelatedUserInfoPage(IdentityService, request.Params);
+            .GetRelatedUserInfoPage(Identity, request.Params);
 
         return Task.FromResult(result);
     }

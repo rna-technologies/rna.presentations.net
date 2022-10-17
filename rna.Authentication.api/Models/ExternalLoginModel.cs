@@ -1,6 +1,4 @@
-﻿using rna.Core.Base.Infrastructure.Model;
-
-namespace rna.Authentication.api.Models
+﻿namespace rna.Authentication.api.Models
 {
     public class ExternalLoginModel
     {

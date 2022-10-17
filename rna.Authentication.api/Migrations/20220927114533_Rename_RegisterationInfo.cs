@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Identity.Application.Migrations
+namespace rna.Authorization.Application.Migrations
 {
     public partial class Rename_RegisterationInfo : Migration
     {

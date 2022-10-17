@@ -1,47 +1,42 @@
-﻿
+﻿using rna.Core.Identity.Infrastructure.Pageables;
 
+namespace rna.Authentication.api.Controllers.Authorizations;
 
-using rna.Core.Identity.Infrastructure.Pageables;
-using rna.Core.Infrastructure.CustomAttribute;
-
-namespace rna.Authentication.api.Controllers.Authorizations
+[AllowParentGroupEdits]
+public class DocumentCategoryController : BaseApiController
 {
-    [AllowParentGroupEdits]
-    public class DocumentCategoryController : BaseApiController
+
+    public DocumentCategoryController() : base(new string[] { "name" }) { }
+
+    [HttpGet]
+    public async Task<IActionResult> Get(UrlQueryParams param)
     {
+        var queryable = Identity.Entity<DocumentCategory>().Get();
 
-        public DocumentCategoryController() : base(new string[] { "name" }) { }
-
-        [HttpGet]
-        public async Task<IActionResult> Get(UrlQueryParams param)
+        if (param.Id != null)
         {
-            var queryable = IdentityService.Entity<DocumentCategory>().Get();
-
-            if (param.Id != null)
-            {
-                var role = queryable.FirstOrDefault(a => a.Id == param.Id);
-                return Ok(role);
-            }
-
-            var pagable = queryable.ToPageable<DocumentCategoryPageable>(IdentityService.DbContext, param);
-
-            return Ok(pagable);
+            var role = queryable.FirstOrDefault(a => a.Id == param.Id);
+            return Ok(role);
         }
 
-        [HttpPost]
-        [AllowAnyDocumentCategory]
-        public async Task<IActionResult> Post([FromBody] DocumentCategory model)
-        {
-            var DocumentCategory = await IdentityService.CreateAsync(model).ConfigureAwait(false);
-            return Created("DocumentCategory", new { DocumentCategory.Id });
-        }
+        var pagable = queryable.ToPageable<DocumentCategoryPageable>(Identity.DbContext, param);
 
-        [HttpPut]
-        [AllowAnyDocumentCategory]
-        public async Task<IActionResult> Put([FromBody] DocumentCategory model)
-        {
-            var rolePermissionClaim = await IdentityService.UpdateAsync(model).ConfigureAwait(false);
-            return Ok(rolePermissionClaim);
-        }
+        return Ok(pagable);
+    }
+
+    [HttpPost]
+    [AllowAnyDocumentCategory]
+    public async Task<IActionResult> Post([FromBody] DocumentCategory model)
+    {
+        var DocumentCategory = await Identity.CreateAsync(model).ConfigureAwait(false);
+        return Created("DocumentCategory", new { DocumentCategory.Id });
+    }
+
+    [HttpPut]
+    [AllowAnyDocumentCategory]
+    public async Task<IActionResult> Put([FromBody] DocumentCategory model)
+    {
+        var rolePermissionClaim = await Identity.UpdateAsync(model).ConfigureAwait(false);
+        return Ok(rolePermissionClaim);
     }
 }
