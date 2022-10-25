@@ -10,14 +10,13 @@ namespace rna.Authentication.api.Controllers.Authorizations
     [AllowAnyDocumentCategory]
     public class DocumentController : BaseApiController
     {
-
-        public DocumentController(ResourceDocumentClient resourceDocumentClient)
+        public DocumentController()
             : base(new string[] { "name" })
         {
-            ResourceDocumentClient = resourceDocumentClient;
+            //ResourceDocumentClient = resourceDocumentClient;
         }
 
-        public ResourceDocumentClient ResourceDocumentClient { get; }
+        //public ResourceDocumentClient ResourceDocumentClient { get; }
 
         [HttpGet]
         public async Task<IActionResult> GetAction([FromQuery] UrlQueryParams param)

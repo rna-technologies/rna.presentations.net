@@ -12,7 +12,7 @@ public class GetClosurableTellerByRegisterPageHandler : BaseRequestHandler<GetCl
     public GetClosurableTellerByRegisterPageHandler(IServiceProvider serviceProvider) : base(serviceProvider) { }
     public override Task<PaginationInfo<ClosurableTellerModel>> Handle(GetClosurableTellerByRegisterPage request, CancellationToken cancellationToken)
     {
-        var groupIds = Identity.GetChildrenGroups(SelectedGroupId!.Value, true).Select(g => g.Id).ToList();
+        var groupIds = Identity.GetChildrenGroups(Scope.GroupId, true).Select(g => g.Id).ToList();
         var result = Identity.Set<TellerRegister>()
             .Where(r => r.Teller.AppId == (request.AppId ?? Scope.AppId))
             .Where(r => r.CloseDate == null)
