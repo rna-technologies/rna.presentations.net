@@ -19,10 +19,11 @@ namespace rna.Authentication.api.Controllers.Authorizations
         //public ResourceDocumentClient ResourceDocumentClient { get; }
 
         [HttpGet]
-        public async Task<IActionResult> GetAction([FromQuery] UrlQueryParams param)
+        public async Task<IActionResult> GetAction([FromQuery] int? appId, [FromQuery] UrlQueryParams param)
         {
+            appId = appId ?? Scope.AppId;
             var queryable = Identity.Set<Document>().Get()
-                .Where(d => d.AppId == Scope.AppId);
+                .Where(d => d.AppId == appId);
             if (param?.Id is { } id)
             {
                 var document = await queryable.FirstOrDefaultAsync(d => d.Id == id).ConfigureAwait(false);

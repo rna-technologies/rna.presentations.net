@@ -48,7 +48,7 @@ namespace rna.Authentication.api.Controllers.Authorizations
         }
 
         [HttpGet("logged-user-account-types")]
-        public async Task<IActionResult> GeLoggerAccountTypes([FromQuery] int appId, [FromQuery] int groupId, [FromQuery] UrlQueryParams param)
+        public async Task<IActionResult> GetLoggerAccountTypes([FromQuery] int appId, [FromQuery] int groupId, [FromQuery] UrlQueryParams param)
         {
             return Ok(await Mediator.Send(new GetLoggerScopeDepartmentPage
             {
@@ -59,7 +59,7 @@ namespace rna.Authentication.api.Controllers.Authorizations
         }
 
         [HttpGet("logged-user-roles")]
-        public async Task<IActionResult> GeLoggerScopeRoles([FromQuery] int appId, [FromQuery] UrlQueryParams param)
+        public async Task<IActionResult> GetLoggerScopeRoles([FromQuery] int appId, [FromQuery] UrlQueryParams param)
         {
             return Ok(await Mediator.Send(new GetLoggerScopeRolePage
             {

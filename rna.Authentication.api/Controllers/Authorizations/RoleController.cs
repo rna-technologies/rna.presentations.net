@@ -13,11 +13,12 @@ public class RoleController : BaseApiController
 
     [HttpGet]
     [AllowAnyDocumentCategory]
-    public async Task<IActionResult> Get(UrlQueryParams param)
+    public async Task<IActionResult> Get([FromQuery] int? appId, UrlQueryParams param)
     {
+        appId = appId is int id and > 0 ? appId : Scope.AppId;
         var query = Identity.Entity<Role>().Get()
             .AsNoTracking()
-            .Where(r => r.AppId == SelectedAppId)
+            .Where(r => r.AppId == appId)
             .Select(r => new RoleModel
             {
                 AppId = r.AppId,
@@ -70,7 +71,7 @@ public class RoleController : BaseApiController
         param.Set(p => p.SearchFields == values).Set(p => p.OrderByFields == values);
 
         var hello = Identity.Entity<DocumentClaim>().Get()
-             .Where(d => d.RoleId == roleId && d.Document.AppId == Scope.AppId)
+             .Where(d => d.RoleId == roleId)
              .AsNoTracking()
              .Select(d => new DocumentClaimEditModel
              {

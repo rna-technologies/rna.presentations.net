@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using rna.Authorization.Application.Tellers;
 using rna.Core.Identity.Infrastructure.Models;
+using rna.Core.Infrastructure.Logics.Entities;
 //using Resource.Application;
 using rna.Core.Infrastructure.Logics.Users.Verifications.ContactSignInVerification;
 using rna.Core.Infrastructure.Services.MiddleWare;
@@ -39,6 +40,14 @@ namespace rna.Authentication.api
                 Environment = Env,
                 //ModelBuilder = modelBuilder
             });
+
+            services.AddTransient(typeof(IRequestHandler<,>), typeof(CreateEntityCommandHandler<,>));
+            services.AddTransient(typeof(IRequestHandler<,>), typeof(UpdateEntityCommandHandler<,>));
+            services.AddTransient(typeof(IRequestHandler<,>), typeof(DeleteEntityCommandHandler<>));
+            services.AddTransient(typeof(IRequestHandler<,>), typeof(GetEntityCommandHandler<,>));
+            services.AddTransient(typeof(IRequestHandler<,>), typeof(GetEntityPageCommandHandler<,>));
+
+            services.AddMediatR(typeof(GetEntityCommand<,>).GetTypeInfo().Assembly);
 
             services.AddMediatR(typeof(VerifyUserEmailHandler).GetTypeInfo().Assembly);
             services.AddMediatR(typeof(GetRegisterableTellerPage).GetTypeInfo().Assembly);
