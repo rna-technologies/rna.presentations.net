@@ -41,14 +41,15 @@ public class RoleController : BaseApiController
 
     [HttpGet("document")]
     [AllowAnyDocumentCategory]
-    public Task<IActionResult> GetDocuments([FromQuery] int roleId, [FromQuery] UrlQueryParams param)
+    public Task<IActionResult> GetDocuments([FromQuery] int? appId, [FromQuery] int roleId, [FromQuery] UrlQueryParams param)
     {
         var roleDocumentIds = Identity.Entity<DocumentClaim>().Get()
-            .Where(d => d.RoleId == roleId && d.DocumentId != null && d.Document.AppId == Scope.AppId)
+            .Where(d => d.RoleId == roleId && d.DocumentId != null)
             .Select(d => d.DocumentId.ToString()).ToArray();
 
+        appId = appId ?? Scope.AppId;
         var pagable = Identity.Entity<Document>().Get()
-            .Where(d => d.AppId == Scope.AppId)
+            .Where(d => d.AppId == appId)
             .WhereNotAny(roleDocumentIds, d => d.Id)
             .Select(d => new DocumentModel
             {
