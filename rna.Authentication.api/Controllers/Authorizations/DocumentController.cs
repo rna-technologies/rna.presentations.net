@@ -1,7 +1,7 @@
 ﻿using rna.Core.Infrastructure.Services.HttpClients;
 using rna.Core.Identity.Infrastructure.Pageables;
 using rna.Core.Base.Infrastructure;
-
+using rna.Exceptions.Extensions;
 
 namespace rna.Authentication.api.Controllers.Authorizations
 {
@@ -21,7 +21,8 @@ namespace rna.Authentication.api.Controllers.Authorizations
         [HttpGet]
         public async Task<IActionResult> GetAction([FromQuery] int? appId, [FromQuery] UrlQueryParams param)
         {
-            appId = appId ?? Scope.AppId;
+            if (appId == null) this.ThrowException("Please select an app");
+
             var queryable = Identity.Set<Document>().Get()
                 .Where(d => d.AppId == appId);
             if (param?.Id is { } id)
@@ -108,32 +109,17 @@ namespace rna.Authentication.api.Controllers.Authorizations
         [HttpPost]
         public async Task<IActionResult> CreateModel([FromBody] Document model, [FromQuery] UrlQueryParams param)
         {
-            try
-            {
-                model.AppId = Scope.AppId;
-                model = await Identity.CreateAsync(model).ConfigureAwait(false);
-
-                return Created("Document", new { model.Id });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new BadRequestModel { error = ex.Message });
-            }
+            model.ThrowArgumentExceptionFor(m => m.AppId == null);
+            model = await Identity.CreateAsync(model).ConfigureAwait(false);
+            return Ok();
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateModel([FromBody] Document model, [FromQuery] UrlQueryParams param)
         {
-            try
-            {
-                model.AppId = Scope.AppId;
-                await Identity.UpdateAsync(model).ConfigureAwait(false);
-                return Ok(model.Id);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new BadRequestModel { error = ex.Message });
-            }
+            model.ThrowArgumentExceptionFor(m => m.AppId == null);
+            await Identity.UpdateAsync(model).ConfigureAwait(false);
+            return Ok();
         }
     }
 
