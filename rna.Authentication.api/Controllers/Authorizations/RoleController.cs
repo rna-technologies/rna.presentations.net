@@ -128,7 +128,7 @@ public class RoleController : BaseApiController
         if (string.IsNullOrEmpty(model.Name?.Trim())) this.ThrowException("There is no name for the selected document");
 
 
-        var documentCategory = Identity.Entity<DocumentCategory>().Get()
+        var documentCategory = Identity.Entity<DocumentCategory>()
                      .Where(dc => dc.DocumentId == model.Id && dc.Name.Trim().ToLower() == "Any".ToLower())
                      .ToList()?.FirstOrDefault();
 
