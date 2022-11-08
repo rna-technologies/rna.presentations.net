@@ -280,10 +280,8 @@ public class RoleController : BaseApiController
     [AllowAnyDocumentCategory]
     public async Task<IActionResult> Put([FromBody] RoleModel model)
     {
-
         await Mediator.Send(new UpdateRole { Model = model })
         .ConfigureAwait(false);
         return NoContent();
-
     }
 }

@@ -2,6 +2,7 @@
 using rna.Core.Identity.Infrastructure.Pageables;
 using rna.Core.Base.Infrastructure;
 using rna.Exceptions.Extensions;
+using rna.Core.Identity.Infrastructure.Models;
 
 namespace rna.Authentication.api.Controllers.Authorizations
 {
@@ -107,18 +108,20 @@ namespace rna.Authentication.api.Controllers.Authorizations
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateModel([FromBody] Document model, [FromQuery] UrlQueryParams param)
+        public async Task<IActionResult> CreateModel([FromBody] DocumentModel model, [FromQuery] UrlQueryParams param)
         {
-            model.ThrowArgumentExceptionFor(m => m.AppId == null);
-            model = await Identity.CreateAsync(model).ConfigureAwait(false);
+            model.ThrowArgumentExceptionFor(m => m.AppId == null || m.AppId == 0);
+            await Identity.CreateAsync(model.Map<Document>())
+                .ConfigureAwait(false);
             return Ok();
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateModel([FromBody] Document model, [FromQuery] UrlQueryParams param)
+        public async Task<IActionResult> UpdateModel([FromBody] DocumentModel model, [FromQuery] UrlQueryParams param)
         {
-            model.ThrowArgumentExceptionFor(m => m.AppId == null);
-            await Identity.UpdateAsync(model).ConfigureAwait(false);
+            model.ThrowArgumentExceptionFor(m => m.AppId == null || m.AppId == 0);
+            var doc = model.Map<Document>();
+            await Identity.UpdateAsync(doc).ConfigureAwait(false);
             return Ok();
         }
     }
