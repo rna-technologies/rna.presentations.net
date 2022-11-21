@@ -38,32 +38,33 @@ namespace rna.Authentication.api
             {
                 Configuration = Configuration,
                 Environment = Env,
+                IncludeRnaCommandRequestHandlers = true
                 //ModelBuilder = modelBuilder
             });
 
-            services.AddTransient(typeof(IRequestHandler<,>), typeof(CreateEntityCommandHandler<,>));
-            services.AddTransient(typeof(IRequestHandler<,>), typeof(UpdateEntityCommandHandler<,>));
-            services.AddTransient(typeof(IRequestHandler<,>), typeof(DeleteEntityCommandHandler<>));
-            services.AddTransient(typeof(IRequestHandler<,>), typeof(GetEntityCommandHandler<,>));
-            services.AddTransient(typeof(IRequestHandler<,>), typeof(GetEntityPageCommandHandler<,>));
+            //services.AddTransient(typeof(IRequestHandler<,>), typeof(CreateEntityCommandHandler<,>));
+            //services.AddTransient(typeof(IRequestHandler<,>), typeof(UpdateEntityCommandHandler<,>));
+            //services.AddTransient(typeof(IRequestHandler<,>), typeof(DeleteEntityCommandHandler<>));
+            //services.AddTransient(typeof(IRequestHandler<,>), typeof(GetEntityCommandHandler<,>));
+            //services.AddTransient(typeof(IRequestHandler<,>), typeof(GetEntityPageCommandHandler<,>));
 
-            services.AddMediatR(typeof(GetEntityCommand<,>).GetTypeInfo().Assembly);
+            //services.AddMediatR(typeof(GetEntityCommand<,>).GetTypeInfo().Assembly);
 
             services.AddMediatR(typeof(VerifyUserEmailHandler).GetTypeInfo().Assembly);
             services.AddMediatR(typeof(GetRegisterableTellerPage).GetTypeInfo().Assembly);
 
             services.AddAuthorization();
 
-            services.AddApplicationInsightsTelemetry();
+            //services.AddApplicationInsightsTelemetry();
 
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            // Register your own things directly with Autofac here. Don't
-            // call builder.Populate(), that happens in AutofacServiceProviderFactory
-            // for you.
-            builder.RegisterModule(new AutofacAppModule());
+            //// Register your own things directly with Autofac here. Don't
+            //// call builder.Populate(), that happens in AutofacServiceProviderFactory
+            //// for you.
+            //builder.RegisterModule(new AutofacAppModule());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
