@@ -174,7 +174,7 @@ public class RoleController : BaseApiController
 
         Identity.CreateWithoutSaving(documentClaim);
 
-        var saveed = await Identity.SaveAnyChangesAsync().ConfigureAwait(false);
+        var saveed = (await Identity.SaveChangesAsync().ConfigureAwait(false)) > 0;
 
         if (saveed) Identity.SetClearUserDocmentCache(model.Name);
 
@@ -249,7 +249,7 @@ public class RoleController : BaseApiController
 
         documentClaim.CategoryClaims = categoryClaims;
 
-        var saved = Identity.SaveAnyChanges();
+        var saved = Identity.SaveChanges() > 0;
 
         if (saved)
         {
