@@ -39,7 +39,6 @@ namespace rna.Authentication.api
                 Configuration = Configuration,
                 Environment = Env,
                 IncludeRnaCommandRequestHandlers = true,
-                EnableAuditLogging = true,
                 //ModelBuilder = modelBuilder
             });
 
