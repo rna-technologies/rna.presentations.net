@@ -30,28 +30,25 @@ namespace rna.Authentication.api
         {
             services.AddOptions();
 
-            var modelBuilder = new ModelBuilder();
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(Startup).Assembly);
-            modelBuilder.Entity<GroupRelationModel>().ToTable(g => g.ExcludeFromMigrations());
+            //var modelBuilder = new ModelBuilder();
+            //modelBuilder.ApplyConfigurationsFromAssembly(typeof(Startup).Assembly);
+            //modelBuilder.Entity<GroupRelationModel>().ToTable(g => g.ExcludeFromMigrations());
             //Configuration, Env,
-            services.AddRnaServices(new()
+            services.AddRnaServices((o) =>
             {
-                Configuration = Configuration,
-                Environment = Env,
-                IncludeRnaCommandRequestHandlers = true,
+                o.Configuration = Configuration;
+                o.Environment = Env;
+                o.AddRnaCommandHandlers();
                 //ModelBuilder = modelBuilder
             });
 
-            //services.AddTransient(typeof(IRequestHandler<,>), typeof(CreateEntityCommandHandler<,>));
-            //services.AddTransient(typeof(IRequestHandler<,>), typeof(UpdateEntityCommandHandler<,>));
-            //services.AddTransient(typeof(IRequestHandler<,>), typeof(DeleteEntityCommandHandler<>));
-            //services.AddTransient(typeof(IRequestHandler<,>), typeof(GetEntityCommandHandler<,>));
-            //services.AddTransient(typeof(IRequestHandler<,>), typeof(GetEntityPageCommandHandler<,>));
-
-            //services.AddMediatR(typeof(GetEntityCommand<,>).GetTypeInfo().Assembly);
-
-            services.AddMediatR(typeof(VerifyUserEmailHandler).GetTypeInfo().Assembly);
-            services.AddMediatR(typeof(GetRegisterableTellerPage).GetTypeInfo().Assembly);
+            services.AddMediatR(o =>
+            {
+                o.RegisterServicesFromAssemblies(
+                    typeof(VerifyUserEmailHandler).GetTypeInfo().Assembly,
+                    typeof(GetRegisterableTellerPage).GetTypeInfo().Assembly
+                    );
+            });
 
             services.AddAuthorization();
 
@@ -78,11 +75,11 @@ namespace rna.Authentication.api
 
             var origins = Configuration.GetSection("ClientBaseUrls").Get<string[]>();
 
-            app.UseCors(x => x.WithOrigins(origins).AllowAnyMethod().AllowCredentials().AllowAnyHeader());
+            //app.UseCors(x => x.WithOrigins(origins).AllowAnyMethod().AllowCredentials().AllowAnyHeader());
 
             //app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowCredentials().AllowAnyHeader());
 
-            //app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("*"));
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("*"));
 
 
             //app.UseAuthentication();

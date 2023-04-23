@@ -68,7 +68,7 @@ namespace rna.Authentication.api.Controllers.Authorizations
             [FromQuery] bool? setDefaultRole,
             [FromQuery] bool? hasPassword)
         {
-            return base.CreateDefaultUser(userModel.Set(u => u.RegisteredGroupId == SelectedGroupId.Value), setDefaultRole, hasPassword);
+            return base.CreateDefaultUser(userModel.SetValue(u => u.RegisteredGroupId == SelectedGroupId.Value), setDefaultRole, hasPassword);
         }
 
         [HttpPut(Constants.ChangeUserPassword)]

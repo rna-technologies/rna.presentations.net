@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rna.Authorization.Applicati
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rna.Base.Extensions", "..\rna.Packages\Tools\Base\rna.Base.Extensions\rna.Base.Extensions.csproj", "{A14AAB74-AF77-4379-8F34-41FEC2395009}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rna.Core.Domain", "..\rna.Packages\Core\Domain\rna.Core.Domain\rna.Core.Domain.csproj", "{F4EF6664-B619-48D6-831B-4D5B76E28111}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{A14AAB74-AF77-4379-8F34-41FEC2395009}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A14AAB74-AF77-4379-8F34-41FEC2395009}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A14AAB74-AF77-4379-8F34-41FEC2395009}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4EF6664-B619-48D6-831B-4D5B76E28111}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4EF6664-B619-48D6-831B-4D5B76E28111}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4EF6664-B619-48D6-831B-4D5B76E28111}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4EF6664-B619-48D6-831B-4D5B76E28111}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -19,7 +19,7 @@ public class DocumentCategoryController : BaseApiController
             return Ok(role);
         }
 
-        var pagable = queryable.ToPageable<DocumentCategoryPageable>(Identity.DbContext, param);
+        var pagable = queryable.ToPageable<DocumentCategoryPageable>(Identity.DbContext(), param);
 
         return Ok(pagable);
     }

@@ -32,7 +32,7 @@ namespace rna.Authentication.api.Controllers.Authorizations
                 return Ok(document);
             }
 
-            var pagenation = queryable.ToPageable<DocumentPageable>(Identity.DbContext, param);
+            var pagenation = queryable.ToPageable<DocumentPageable>(Identity.DbContext(), param);
 
             return Ok(pagenation);
         }

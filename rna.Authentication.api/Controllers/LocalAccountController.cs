@@ -7,6 +7,7 @@ using rna.Core.Infrastructure.Logics.Users.SignIns.PasswordSignIn.Models;
 using rna.Core.Infrastructure.Logics.Users.Verifications.ContactSignInVerification.Models;
 using rna.Core.Infrastructure.Logics.Users.SignIns.CodeSignIn;
 using rna.Core.Infrastructure.Logics.Users.SignUps.CodeSignUp;
+using rna.Core.Infrastructure.Extensions;
 
 namespace rna.Authentication.api.Controllers
 {
@@ -36,28 +37,32 @@ namespace rna.Authentication.api.Controllers
         [AllowAnonymousUser]
         public async Task<IActionResult> VerifySignInAndSendCode([FromBody] VerificationRequestModel model)
         {
-            //return Ok(new { Hello = "", Yes = "" });
-            //await ResourceService.Entity<ProductPackType>().Get().ToListAsync().ConfigureAwait(false);
+            return (await Mediator.Send(new VerifyUserPhoneOrEmail
+            {
+                VerificationType = model.VerifyByEmail ? ContactVerificationType.Email : ContactVerificationType.Sms,
 
-            var hello = await Mediator.Send(new VerifyUserPhoneOrEmail { Model = model }).ConfigureAwait(false);
+                EmailModel = model.VerifyByEmail ? new VerifyUserEmail { Email = model.Contact } : null,
 
-            return Ok(hello);
+                SmsModel = !model.VerifyByEmail ? new VerifyUserPhone { Phone = model.Contact, ZipCode = model.ZipCode } : null,
+
+            }).ConfigureAwait(false))
+            .ToOkResult();
 
         }
 
-        [HttpPost]
-        [AllowAnonymousUser]
-        public async Task<IActionResult> VerifyUserPhone([FromBody] VerificationRequestModel model)
-        {
-            return Ok(await Mediator.Send(new VerifyUserPhone { Model = model }).ConfigureAwait(false));
-        }
+        //[HttpPost]
+        //[AllowAnonymousUser]
+        //public async Task<IActionResult> VerifyUserPhone([FromBody] VerificationRequestModel model)
+        //{
+        //    return Ok(await Mediator.Send(new VerifyUserPhone { Model = model }).ConfigureAwait(false));
+        //}
 
-        [HttpPost]
-        [AllowAnonymousUser]
-        public async Task<IActionResult> VerifyUserEmail([FromBody] VerificationRequestModel model)
-        {
-            return Ok(await Mediator.Send(new VerifyUserEmail { Model = model }).ConfigureAwait(false));
-        }
+        //[HttpPost]
+        //[AllowAnonymousUser]
+        //public async Task<IActionResult> VerifyUserEmail([FromBody] VerificationRequestModel model)
+        //{
+        //    return Ok(await Mediator.Send(new VerifyUserEmail { Model = model }).ConfigureAwait(false));
+        //}
 
         //[HttpPost]
         //[AllowAnonymousUser]
@@ -68,12 +73,12 @@ namespace rna.Authentication.api.Controllers
 
         [HttpPost]
         [AllowAnonymousUser]
-        public async Task<IActionResult> UserNameOrPhoneOrEmailAndPassword([FromBody] LoginViewModel model, [FromQuery] string appName = null)
+        public async Task<IActionResult> UserNameOrPhoneOrEmailAndPassword([FromBody] LoginViewModel model)
         {
             return Ok(await Mediator.Send(new SignInUserNameOrPhoneOrEmailAndPassword
             {
                 Model = model,
-                AppName = appName
+                //AppName = appName
             }).ConfigureAwait(false));
         }
 

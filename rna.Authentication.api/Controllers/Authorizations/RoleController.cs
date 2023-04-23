@@ -34,7 +34,7 @@ public class RoleController : BaseApiController
             return Ok(role);
         }
 
-        var pagable = query.ToPageable(Identity.DbContext, param);
+        var pagable = query.ToPageable(Identity.DbContext(), param);
 
         return Ok(pagable);
     }
@@ -58,7 +58,7 @@ public class RoleController : BaseApiController
                 Description = d.Description,
                 IsGrantDocument = d.IsGrantDocument,
                 Name = d.Name
-            }).ToPageable(Identity.DbContext, param);
+            }).ToPageable(Identity.DbContext(), param);
 
         return Task.FromResult(Ok(pagable) as IActionResult);
     }
@@ -69,7 +69,7 @@ public class RoleController : BaseApiController
     public Task<IActionResult> GetRoleDocumentClaims([FromQuery] int roleId, UrlQueryParams param)
     {
         var values = new string[] { "documentName" };
-        param.Set(p => p.SearchFields == values).Set(p => p.OrderByFields == values);
+        param.SetValue(p => p.SearchFields == values).SetValue(p => p.OrderByFields == values);
 
         var hello = Identity.Entity<DocumentClaim>().Get()
              .Where(d => d.RoleId == roleId)
@@ -83,7 +83,7 @@ public class RoleController : BaseApiController
                  CustomGrantClaimId = d.CustomGrantClaimId,
                  DocumentName = d.Document.Name,
                  IsActive = d.IsActive
-             }).ToPageable(Identity.DbContext, param);
+             }).ToPageable(Identity.DbContext(), param);
 
         var documentClaimIds = hello.Data.Select(d => d.Id).ToList();
 

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using rna.Core.Identity.Infrastructure;
 
@@ -11,9 +12,10 @@ using rna.Core.Identity.Infrastructure;
 namespace rna.Authorization.Application.Migrations
 {
     [DbContext(typeof(SuiteIdentityContext))]
-    partial class SuiteIdentityContextModelSnapshot : ModelSnapshot
+    [Migration("20230416094655_Create_AuditLog")]
+    partial class Create_AuditLog
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
