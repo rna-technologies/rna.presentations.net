@@ -15,5 +15,6 @@ RnaWebApplication.Run(args, o => o
 .AddRnaCommandHandlers()
 .AddAuthentication()
 .AddSms()
+.AddEmail()
 .AddMediatRAssemblies(typeof(VerifyUserEmailHandler), typeof(GetRegisterableTellerPage))
 );
