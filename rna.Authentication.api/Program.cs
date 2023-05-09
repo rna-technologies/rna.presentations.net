@@ -11,6 +11,7 @@ using rna.Core.Infrastructure.Services.MiddleWare;
 
 
 RnaWebApplication.Run(args, o => o
+.AddApplicationAssembly(Assembly.GetExecutingAssembly())
 .AllowAnyCorsOrigin()
 .AddRnaCommandHandlers()
 .AddAuthentication()
