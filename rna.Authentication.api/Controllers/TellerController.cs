@@ -3,7 +3,7 @@
 namespace rna.Authentication.api.Controllers
 {
     [ApiController]
-    public class TellerController : BaseApiController
+    public class TellerController : RnaBaseController
     {
 
         public TellerController() : base(new string[] { "FullName", "PhoneNumber" }) { }

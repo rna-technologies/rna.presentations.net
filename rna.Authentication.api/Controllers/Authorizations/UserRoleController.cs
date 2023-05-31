@@ -5,7 +5,7 @@ namespace rna.Authentication.api.Controllers.Authorizations
 {
     [ApiController]
     [AllowParentGroupEdits]
-    public class UserRoleController : BaseApiController
+    public class UserRoleController : RnaBaseController
     {
         public UserRoleController() { }
 

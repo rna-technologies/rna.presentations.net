@@ -14,7 +14,7 @@ namespace rna.Authentication.api.Controllers
 
     [AllowAnonymous]
     [Route("{appName}/[controller]/[action]")]
-    public class LocalAccountController : BaseApiController
+    public class LocalAccountController : RnaBaseController
     {
         public LocalAccountController() : base(new string[] { "FullName" }) { }
 

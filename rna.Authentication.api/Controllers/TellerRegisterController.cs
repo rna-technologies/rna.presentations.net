@@ -4,7 +4,7 @@ using rna.Authorization.Application.TellerRegisters;
 namespace rna.Authentication.api.Controllers;
 
 [ApiController]
-public class TellerRegisterController : BaseApiController
+public class TellerRegisterController : RnaBaseController
 {
     public TellerRegisterController() : base(new string[] { "FullName", "PhoneNumber" }) { }
 

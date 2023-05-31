@@ -6,7 +6,7 @@ using rna.Exceptions.Extensions;
 namespace rna.Authentication.api.Controllers.Authorizations;
 
 [AllowParentGroupEdits]
-public class RoleController : BaseApiController
+public class RoleController : RnaBaseController
 {
 
     public RoleController() : base(new string[] { "name" }) { }
@@ -16,7 +16,7 @@ public class RoleController : BaseApiController
     public async Task<IActionResult> Get([FromQuery] int? appId, UrlQueryParams param)
     {
         appId = appId is int id and > 0 ? appId : Scope.AppId;
-        var query = Identity.Entity<Role>().Get()
+        var query = Identity.Set<Role>().Get()
             .AsNoTracking()
             .Where(r => r.AppId == appId)
             .Select(r => new RoleModel
@@ -43,14 +43,14 @@ public class RoleController : BaseApiController
     [AllowAnyDocumentCategory]
     public Task<IActionResult> GetDocuments([FromQuery] int? appId, [FromQuery] int roleId, [FromQuery] UrlQueryParams param)
     {
-        var roleDocumentIds = Identity.Entity<DocumentClaim>().Get()
+        var roleDocumentIds = Identity.Set<DocumentClaim>().Get()
             .Where(d => d.RoleId == roleId && d.DocumentId != null)
             .Select(d => d.DocumentId.ToString()).ToArray();
 
         appId = appId ?? Scope.AppId;
-        var pagable = Identity.Entity<Document>().Get()
+        var pagable = Identity.Set<Document>().Get()
             .Where(d => d.AppId == appId)
-            .WhereNotAny(roleDocumentIds, d => d.Id)
+            .WhereNotAny(nameof(Document.Id), roleDocumentIds)
             .Select(d => new DocumentModel
             {
                 Id = d.Id,
@@ -71,7 +71,7 @@ public class RoleController : BaseApiController
         var values = new string[] { "documentName" };
         param.SetValue(p => p.SearchFields == values).SetValue(p => p.OrderByFields == values);
 
-        var hello = Identity.Entity<DocumentClaim>().Get()
+        var hello = Identity.Set<DocumentClaim>().Get()
              .Where(d => d.RoleId == roleId)
              .AsNoTracking()
              .Select(d => new DocumentClaimEditModel
@@ -87,7 +87,7 @@ public class RoleController : BaseApiController
 
         var documentClaimIds = hello.Data.Select(d => d.Id).ToList();
 
-        var categoryClaims = Identity.Entity<CategoryClaim>().Get()
+        var categoryClaims = Identity.Set<CategoryClaim>().Get()
             .FindAny(documentClaimIds, c => c.DocumentClaimId)
             .Select(c => new CategoryClaimEditModel
             {
@@ -128,7 +128,7 @@ public class RoleController : BaseApiController
         if (string.IsNullOrEmpty(model.Name?.Trim())) this.ThrowException("There is no name for the selected document");
 
 
-        var documentCategory = Identity.Entity<DocumentCategory>()
+        var documentCategory = Identity.Set<DocumentCategory>()
                      .Where(dc => dc.DocumentId == model.Id && dc.Name.Trim().ToLower() == "Any".ToLower())
                      .ToList()?.FirstOrDefault();
 
@@ -206,7 +206,7 @@ public class RoleController : BaseApiController
 
             if (categoryClaim.DocumentCategoryId == 0)
             {
-                var documentCategoryId = Identity.Entity<DocumentCategory>().Get()
+                var documentCategoryId = Identity.Set<DocumentCategory>().Get()
                        .Where(c => c.DocumentId == documentClaim.DocumentId && c.Name.ToLower() == "any")
                        .FirstOrDefault()?
                        .Id;
@@ -253,7 +253,7 @@ public class RoleController : BaseApiController
 
         if (saved)
         {
-            var documentName = Identity.Entity<Document>().Get()
+            var documentName = Identity.Set<Document>().Get()
                  .Where(d => d.Id == model.DocumentId)
                  .Select(d => d.Name)
                  .FirstOrDefault();

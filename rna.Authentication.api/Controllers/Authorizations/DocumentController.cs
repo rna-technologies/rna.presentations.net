@@ -9,7 +9,7 @@ namespace rna.Authentication.api.Controllers.Authorizations
     [ApiController]
     [AllowParentGroupEdits]
     [AllowAnyDocumentCategory]
-    public class DocumentController : BaseApiController
+    public class DocumentController : RnaBaseController
     {
         public DocumentController()
             : base(new string[] { "name" })
@@ -67,12 +67,12 @@ namespace rna.Authentication.api.Controllers.Authorizations
             var savedDocuments = Identity.Set<Document>().Map<ControllerDocument>().ToList();
 
             var notSavedDocuments = dataControllerDocuments.AsQueryable()
-                .WhereNotAny(savedDocuments.Select(s => s.Name).ToArray(), d => d.Name)
+                .WhereNotAny(d => d.Name, savedDocuments.Select(s => s.Name).ToArray())
                 .OrderBy(n => n.Name)
                 .ToList(); //dataControllerDocuments.Except(savedDocuments).OrderBy(n => n.Name);
 
             var falseSavedDocuments = savedDocuments.AsQueryable()
-                .WhereNotAny(dataControllerDocuments.Select(d => d.Name).ToArray(), s => s.Name)
+                .WhereNotAny(s => s.Name, dataControllerDocuments.Select(d => d.Name).ToArray())
                 .OrderBy(ne => ne.Name); //savedDocuments.Except(dataControllerDocuments).OrderBy(ne => ne.Name);
 
             return Ok(new { SavedDocuments = savedDocuments, NotSavedDocuments = notSavedDocuments, FalseSavedDocuments = falseSavedDocuments });
@@ -100,7 +100,7 @@ namespace rna.Authentication.api.Controllers.Authorizations
                 .ToList();
 
             var notSavedDocuments = dataControllerDocuments.AsQueryable()
-                .WhereNotAny(savedDocuments.Select(s => s.Name).ToArray(), d => d.Name)
+                .WhereNotAny(d => d.Name, savedDocuments.Select(s => s.Name).ToArray())
                 .OrderBy(n => n.Name)
                 .ToList(); //dataControllerDocuments.Except(savedDocuments, new AppDocumentComparer()).OrderBy(n => n.Name).ToList();
 

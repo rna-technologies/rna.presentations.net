@@ -6,7 +6,7 @@ namespace rna.Authentication.api.Controllers.Authorizations
     [ApiController]
     [AllowParentGroupEdits]
     [AllowAnyDocumentCategory]
-    public class ScopeClaimController : BaseApiController
+    public class ScopeClaimController : RnaBaseController
     {
         public ScopeClaimController() : base(new string[] { "name" }) { }
 

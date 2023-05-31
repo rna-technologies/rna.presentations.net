@@ -3,7 +3,7 @@
 namespace rna.Authentication.api.Controllers.Authorizations;
 
 [AllowParentGroupEdits]
-public class DocumentCategoryController : BaseApiController
+public class DocumentCategoryController : RnaBaseController
 {
 
     public DocumentCategoryController() : base(new string[] { "name" }) { }

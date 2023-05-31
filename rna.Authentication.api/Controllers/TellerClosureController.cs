@@ -4,7 +4,7 @@ using rna.Authorization.Application.Tellers;
 namespace rna.Authentication.api.Controllers
 {
     [ApiController]
-    public class TellerClosureController : BaseApiController
+    public class TellerClosureController : RnaBaseController
     {
         public TellerClosureController() : base(new string[] { "FullName", "PhoneNumber" }) { }
 

@@ -3,7 +3,7 @@ using rna.Core.Infrastructure.Logics.GroupAccess;
 
 namespace rna.Authentication.api.Controllers
 {
-    public class ScopeSelectionActionController : BaseApiController
+    public class ScopeSelectionActionController : RnaBaseController
     {
         public ScopeSelectionActionController() : base(new string[] { "name", "Description" }) { }
 
