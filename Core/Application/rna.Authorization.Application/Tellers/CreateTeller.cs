@@ -10,7 +10,7 @@ public class CreateTellerHandler : BaseRequestHandler<CreateTeller, Unit>
     public CreateTellerHandler(IServiceProvider serviceProvider) : base(serviceProvider) { }
     public override async Task<Unit> Handle(CreateTeller request, CancellationToken cancellationToken)
     {
-        request.ThrowArgumentExceptionFor(r => r.UserId == null);
+        request.ThrowArgumentExceptionFor(r => r.UserId == null, "Please select a user");
 
         var teller = Identity.Set<Teller>().FirstOrDefault(t => t.AppId == (request.AppId ?? Scope.AppId) && t.UserId == request.UserId);
 

@@ -9,7 +9,7 @@ public class GetTellerableUserHandler : BaseRequestHandler<GetTellerableUser, Us
     public GetTellerableUserHandler(IServiceProvider serviceProvider) : base(serviceProvider) { }
     public override async Task<UserModel?> Handle(GetTellerableUser request, CancellationToken cancellationToken)
     {
-        request.ThrowArgumentExceptionFor(r => r.UserId == null);
+        request.ThrowArgumentExceptionFor(r => r.UserId == null, "Please select a user");
         var queryable = await Mediator.Send(new GetTellerableUserQuery(), cancellationToken)
             .ConfigureAwait(false);
         var result = queryable.FirstOrDefault(b => b.Id == request.UserId);

@@ -1,4 +1,5 @@
 ﻿using rna.Core.Identity.Infrastructure.Extensions.RelatedUser;
+using rna.Core.Resource.Infrastructure;
 
 namespace rna.Authorization.Application.Tellers;
 
@@ -21,6 +22,6 @@ public class GetRegisterableTellerPageHandler : BaseRequestHandler<GetRegisterab
         }, cancellationToken).ConfigureAwait(false))
         .Map<RegisterableTellerModel>().ToList();
 
-        return tellers.GetRelatedUserInfoPage(Identity, request.Params);
+        return tellers.GetUserInfoPage(Identity, request.Params);
     }
 }

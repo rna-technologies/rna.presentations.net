@@ -110,7 +110,7 @@ namespace rna.Authentication.api.Controllers.Authorizations
         [HttpPost]
         public async Task<IActionResult> CreateModel([FromBody] DocumentModel model, [FromQuery] UrlQueryParams param)
         {
-            model.ThrowArgumentExceptionFor(m => m.AppId == null || m.AppId == 0);
+            model.ThrowArgumentExceptionFor(m => m.AppId == null || m.AppId == 0, "Please select an app");
             await Identity.CreateAsync(model.Map<Document>())
                 .ConfigureAwait(false);
             return Ok();
@@ -119,7 +119,7 @@ namespace rna.Authentication.api.Controllers.Authorizations
         [HttpPut]
         public async Task<IActionResult> UpdateModel([FromBody] DocumentModel model, [FromQuery] UrlQueryParams param)
         {
-            model.ThrowArgumentExceptionFor(m => m.AppId == null || m.AppId == 0);
+            model.ThrowArgumentExceptionFor(m => m.AppId == null || m.AppId == 0, "Please select an app");
             var doc = model.Map<Document>();
             await Identity.UpdateAsync(doc).ConfigureAwait(false);
             return Ok();

@@ -46,7 +46,7 @@ namespace rna.Authentication.api.Controllers
                 SmsModel = !model.VerifyByEmail ? new VerifyUserPhone { Phone = model.Contact, ZipCode = model.ZipCode } : null,
 
             }).ConfigureAwait(false))
-            .ToOkResult();
+            .ToOk();
 
         }
 

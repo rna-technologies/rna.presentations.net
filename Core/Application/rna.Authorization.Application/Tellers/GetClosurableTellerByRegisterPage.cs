@@ -1,4 +1,5 @@
 ﻿using rna.Core.Identity.Infrastructure.Extensions.RelatedUser;
+using rna.Core.Resource.Infrastructure;
 
 namespace rna.Authorization.Application.Tellers;
 
@@ -43,7 +44,7 @@ public class GetClosurableTellerByRegisterPageHandler : BaseRequestHandler<GetCl
                 TellerRegisterId = g.Id,
                 UserId = g.Teller.UserId
             }).ToList()
-            .GetRelatedUserInfoPage(Identity, request.Params);
+            .GetUserInfoPage(Identity, request.Params);
 
         return Task.FromResult(result);
     }

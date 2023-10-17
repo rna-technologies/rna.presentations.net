@@ -13,7 +13,7 @@ public class VerifyIsOpenedTellerHandler : BaseRequestHandler<VerifyIsOpenedTell
     public VerifyIsOpenedTellerHandler(IServiceProvider serviceProvider) : base(serviceProvider) { }
     public override Task<Unit> Handle(VerifyIsOpenedTeller request, CancellationToken cancellationToken)
     {
-        request.ThrowArgumentExceptionFor(r => r.UserId == null);
+        request.ThrowArgumentExceptionFor(r => r.UserId == null, "Please select a user");
 
         if (Configuration.VerifyIsPowerUser(LoggedUserId)) return Unit.Task;
 

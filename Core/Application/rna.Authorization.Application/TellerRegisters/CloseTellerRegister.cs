@@ -10,7 +10,7 @@ public class CloseTellerRegisterHandler : BaseRequestHandler<CloseTellerRegister
     public CloseTellerRegisterHandler(IServiceProvider serviceProvider) : base(serviceProvider) { }
     public override Task<Unit> Handle(CloseTellerRegister request, CancellationToken cancellationToken)
     {
-        request.ThrowArgumentExceptionFor(r => r.TellerId == 0);
+        request.ThrowArgumentExceptionFor(r => r.TellerId == 0, "Please select a teller");
 
         var registers = Identity.Set<TellerRegister>()
             .AsNoTracking()

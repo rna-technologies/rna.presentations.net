@@ -138,7 +138,7 @@ namespace rna.Authentication.api.Services
             public class GetCertForOpenIdConnectRequest : Oauth2BaseServiceRequest<dynamic>
             {
                 /// <summary>Constructs a new GetCertForOpenIdConnect request.</summary>
-                public GetCertForOpenIdConnectRequest(IClientService service)
+                public GetCertForOpenIdConnectRequest(Google.Apis.Services.IClientService service)
                     : base(service)
                 {
                     InitParameters();
@@ -182,7 +182,7 @@ namespace rna.Authentication.api.Services
             public class TokeninfoRequest : Oauth2BaseServiceRequest<dynamic>
             {
                 /// <summary>Constructs a new Tokeninfo request.</summary>
-                public TokeninfoRequest(IClientService service)
+                public TokeninfoRequest(Google.Apis.Services.IClientService service)
                     : base(service)
                 {
                     InitParameters();
@@ -270,7 +270,7 @@ namespace rna.Authentication.api.Services
         public abstract class Oauth2BaseServiceRequest<TResponse> : Google.Apis.Requests.ClientServiceRequest<TResponse>
         {
             ///<summary>Constructs a new Oauth2BaseServiceRequest instance.</summary>
-            protected Oauth2BaseServiceRequest(IClientService service)
+            protected Oauth2BaseServiceRequest(Google.Apis.Services.IClientService service)
                 : base(service)
             {
             }
@@ -392,10 +392,10 @@ namespace rna.Authentication.api.Services
             private const string Resource = "userinfo";
 
             /// <summary>The service which this resource belongs to.</summary>
-            private readonly IClientService service;
+            private readonly Google.Apis.Services.IClientService service;
 
             /// <summary>Constructs a new resource.</summary>
-            public UserinfoResource(IClientService service)
+            public UserinfoResource(Google.Apis.Services.IClientService service)
             {
                 this.service = service;
                 v2 = new V2Resource(service);
@@ -416,10 +416,10 @@ namespace rna.Authentication.api.Services
                 private const string Resource = "v2";
 
                 /// <summary>The service which this resource belongs to.</summary>
-                private readonly IClientService service;
+                private readonly Google.Apis.Services.IClientService service;
 
                 /// <summary>Constructs a new resource.</summary>
-                public V2Resource(IClientService service)
+                public V2Resource(Google.Apis.Services.IClientService service)
                 {
                     this.service = service;
                     me = new MeResource(service);
@@ -440,10 +440,10 @@ namespace rna.Authentication.api.Services
                     private const string Resource = "me";
 
                     /// <summary>The service which this resource belongs to.</summary>
-                    private readonly IClientService service;
+                    private readonly Google.Apis.Services.IClientService service;
 
                     /// <summary>Constructs a new resource.</summary>
-                    public MeResource(IClientService service)
+                    public MeResource(Google.Apis.Services.IClientService service)
                     {
                         this.service = service;
 
@@ -460,7 +460,7 @@ namespace rna.Authentication.api.Services
                     public class GetRequest : Oauth2BaseServiceRequest<dynamic>
                     {
                         /// <summary>Constructs a new Get request.</summary>
-                        public GetRequest(IClientService service)
+                        public GetRequest(Google.Apis.Services.IClientService service)
                             : base(service)
                         {
                             InitParameters();
@@ -507,7 +507,7 @@ namespace rna.Authentication.api.Services
             public class GetRequest : Oauth2BaseServiceRequest<dynamic> //<Google.Apis.Plus.v1.Data.Person>
             {
                 /// <summary>Constructs a new Get request.</summary>
-                public GetRequest(IClientService service)
+                public GetRequest(Google.Apis.Services.IClientService service)
                     : base(service)
                 {
                     InitParameters();
