@@ -56,7 +56,10 @@ namespace rna.Authentication.api.Controllers
         }
 
         [HttpGet("departments-vNext")]
-        public async Task<IActionResult> GetUserAccountTypesvNext([FromQuery] int appId, [FromQuery] int groupId, [FromQuery] UrlQueryParams param)
+        public async Task<IActionResult> GetUserAccountTypesvNext(
+            [FromQuery] int appId,
+            [FromQuery] int groupId,
+            [FromQuery] UrlQueryParams param)
         {
             return Ok(await Mediator.Send(new GetAuthorizedDepartmentPageVNext
             {
@@ -70,7 +73,7 @@ namespace rna.Authentication.api.Controllers
         public async Task<IActionResult> UpdateSelectedScope([FromBody] ScopeBaseModel model)
         {
             await Mediator.Send(new UpdateAuthorizedCachedScope { Model = model }).ConfigureAwait(false);
-            return NoContent();
+            return Ok();
         }
 
 

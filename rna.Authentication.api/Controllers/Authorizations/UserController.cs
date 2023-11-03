@@ -1,5 +1,9 @@
 ﻿//using Authorization.Application.Logics.Users.Models.EditModels;
+using rna.Core.Base.Infrastructure;
 using rna.Core.Infrastructure.Logics.Users.Models.EditModels;
+using rna.Exceptions.Extensions;
+using System.IO;
+using System.Threading;
 
 namespace rna.Authentication.api.Controllers.Authorizations
 {
@@ -9,17 +13,17 @@ namespace rna.Authentication.api.Controllers.Authorizations
     {
         public UserController() : base(new string[] { "fullname", "userName" }) { }
 
-        [HttpGet(Constants.GetUsers)]
-        public override Task<IActionResult> GetUsers([FromQuery] UrlQueryParams param)
-        {
-            return base.GetUsers(param);
-        }
+        //[HttpGet(Constants.GetUsers)]
+        //public override Task<IActionResult> GetUsers([FromQuery] UrlQueryParams param)
+        //{
+        //    return base.GetUsers(param);
+        //}
 
-        [HttpGet(Constants.GetSelectedUser)]
-        public override Task<IActionResult> GetSelectedUser([FromQuery] string userId, [FromQuery] UrlQueryParams param)
-        {
-            return base.GetSelectedUser(userId, param);
-        }
+        //[HttpGet(Constants.GetSelectedUser)]
+        //public override Task<IActionResult> GetSelectedUser([FromQuery] string userId, [FromQuery] UrlQueryParams param)
+        //{
+        //    return base.GetSelectedUser(userId, param);
+        //}
 
         //[HttpPut(Constants.UpdateBusinessUser)]
         //public override Task<IActionResult> UpdateBusinessUser([FromBody] BusinessSignUpModel model)
@@ -51,36 +55,43 @@ namespace rna.Authentication.api.Controllers.Authorizations
         //    return base.CreatePersonUser(model, setDefaultRole, hasPassword, isTellerable);
         //}
 
-        [HttpPut(Constants.UpdateDefaultUser)]
-        public override Task<IActionResult> UpdateDefaultUser([FromBody] UserSignUpModel model)
-        {
-            return base.UpdateDefaultUser(model);
-        }
 
-        [HttpPut(Constants.UpdateDefaultUserProperties)]
-        public override Task<IActionResult> UpdateDefaultUserProperties([FromQuery] string userId, [FromBody] Dictionary<string, object> model)
-        {
-            return base.UpdateDefaultUserProperties(userId, model);
-        }
+
+
+
+
+
+        //[HttpPut(Constants.UpdateDefaultUser)]
+        //public override Task<IActionResult> UpdateDefaultUser([FromBody] UserSignUpModel model)
+        //{
+        //    return base.UpdateDefaultUser(model);
+        //}
+
+        //[HttpPut(Constants.UpdateDefaultUserProperties)]
+        //public override Task<IActionResult> UpdateDefaultUserProperties([FromQuery] string userId, [FromBody] Dictionary<string, object> model)
+        //{
+        //    return base.UpdateDefaultUserProperties(userId, model);
+        //}
 
         [HttpPost(Constants.CreateDefaultUser)]
-        public override Task<IActionResult> CreateDefaultUser([FromBody] UserSignUpModel userModel,
+        public override Task<IActionResult> CreateDefaultUser(
+            [FromBody] UserSignUpModel userModel,
             [FromQuery] bool? setDefaultRole,
             [FromQuery] bool? hasPassword)
         {
             return base.CreateDefaultUser(userModel.SetValue(u => u.RegisteredGroupId == SelectedGroupId.Value), setDefaultRole, hasPassword);
         }
 
-        [HttpPut(Constants.ChangeUserPassword)]
-        public override Task<IActionResult> ChangeUserPassword([FromBody] ChangeUserPasswordModel model)
-        {
-            return base.ChangeUserPassword(model);
-        }
+        //[HttpPut(Constants.ChangeUserPassword)]
+        //public override Task<IActionResult> ChangeUserPassword([FromBody] ChangeUserPasswordModel model)
+        //{
+        //    return base.ChangeUserPassword(model);
+        //}
 
-        [HttpPut(Constants.ResetUserPassword)]
-        public override Task<IActionResult> ResetUserPassword([FromBody] ResetUserPasswordModel model)
-        {
-            return base.ResetUserPassword(model);
-        }
+        //[HttpPut(Constants.ResetUserPassword)]
+        //public override Task<IActionResult> ResetUserPassword([FromBody] ResetUserPasswordModel model)
+        //{
+        //    return base.ResetUserPassword(model);
+        //}
     }
 }
