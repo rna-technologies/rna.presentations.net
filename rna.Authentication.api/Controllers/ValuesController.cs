@@ -13,7 +13,7 @@
 
         // GET api/values/5
         [HttpGet]
-        public string Get(int id, string name)
+        public string Get(int id=0, string name="")
         {
             return $"Hello there Number: {id}, Name: {name}";
         }
