@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using rna.Core.Identity.Infrastructure;
 
@@ -11,9 +12,11 @@ using rna.Core.Identity.Infrastructure;
 namespace rna.Authorization.Application.Migrations
 {
     [DbContext(typeof(SuiteIdentityContext))]
-    partial class SuiteIdentityContextModelSnapshot : ModelSnapshot
+    [Migration("20231122103733_DefaultStringPropertiesMaxLength")]
+    partial class DefaultStringPropertiesMaxLength
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -707,10 +710,6 @@ namespace rna.Authorization.Application.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppId");
-
-                    b.HasIndex("GroupId");
-
                     b.HasIndex("UserId")
                         .IsUnique();
 
@@ -825,12 +824,6 @@ namespace rna.Authorization.Application.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AppId");
-
-                    b.HasIndex("DepartmentId");
-
-                    b.HasIndex("GroupId");
 
                     b.HasIndex("UserId", "AppId", "GroupId", "DepartmentId")
                         .IsUnique();
@@ -955,10 +948,10 @@ namespace rna.Authorization.Application.Migrations
 
                     b.Property<string>("FullName")
                         .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)")
-                        .HasComputedColumnSql("[LastName] + ' ' + [FirstName] + ' ' + [MiddleName] PERSISTED");
+                        .HasColumnType("NVARCHAR(MAX)")
+                        .HasDefaultValue("");
 
                     b.Property<string>("Gender")
                         .IsRequired()
@@ -1273,27 +1266,11 @@ namespace rna.Authorization.Application.Migrations
 
             modelBuilder.Entity("rna.Core.Identity.Domain.RegisterationInfo", b =>
                 {
-                    b.HasOne("rna.Core.Identity.Domain.App", "App")
-                        .WithMany()
-                        .HasForeignKey("AppId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("rna.Core.Identity.Domain.Group", "Group")
-                        .WithMany()
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("rna.Core.Identity.Domain.User", "User")
                         .WithOne("RegistrationInfo")
                         .HasForeignKey("rna.Core.Identity.Domain.RegisterationInfo", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("App");
-
-                    b.Navigation("Group");
 
                     b.Navigation("User");
                 });
@@ -1332,35 +1309,11 @@ namespace rna.Authorization.Application.Migrations
 
             modelBuilder.Entity("rna.Core.Identity.Domain.ScopeClaim", b =>
                 {
-                    b.HasOne("rna.Core.Identity.Domain.App", "App")
-                        .WithMany()
-                        .HasForeignKey("AppId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("rna.Core.Identity.Domain.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("rna.Core.Identity.Domain.Group", "Group")
-                        .WithMany()
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("rna.Core.Identity.Domain.User", "User")
                         .WithMany("ScopeClaims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("App");
-
-                    b.Navigation("Department");
-
-                    b.Navigation("Group");
 
                     b.Navigation("User");
                 });
