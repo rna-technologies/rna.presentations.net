@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace rna.Authorization.Application.Groups.SAS;
+namespace rna.Authorization.Application.Groups.Sas;
 
 public enum GroupTypeSAS
 {

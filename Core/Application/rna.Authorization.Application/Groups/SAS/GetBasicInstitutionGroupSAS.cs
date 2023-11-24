@@ -1,13 +1,13 @@
 ﻿using rna.Core.Infrastructure.Extensions;
 
-namespace rna.Authorization.Application.Groups.SAS;
+namespace rna.Authorization.Application.Groups.Sas;
 
-public class GetBasicInstitutionGroupSAS : IRequest<IActionResult>
+public class GetBasicInstitutionGroupSas : IRequest<IActionResult>
 {
 
-    public class GetBasicInstitutionGroupSASHandler(IServiceProvider serviceProvider) : BaseRequestHandler<GetBasicInstitutionGroupSAS, IActionResult>(serviceProvider)
+    public class GetBasicInstitutionGroupSasHandler(IServiceProvider serviceProvider) : BaseRequestHandler<GetBasicInstitutionGroupSas, IActionResult>(serviceProvider)
     {
-        public override async Task<IActionResult> Handle(GetBasicInstitutionGroupSAS request, CancellationToken cancellationToken)
+        public override async Task<IActionResult> Handle(GetBasicInstitutionGroupSas request, CancellationToken cancellationToken)
         {
             var hello = await Identity.Set<Group>()
                 .Where(g => g.Id == Scope.GroupId)

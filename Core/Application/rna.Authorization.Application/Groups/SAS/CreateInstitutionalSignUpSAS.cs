@@ -5,7 +5,7 @@ using rna.Core.Infrastructure.Logics.Users.Validations;
 using Microsoft.Extensions.Configuration;
 using rna.Core.Infrastructure.Services.Authorization;
 
-namespace rna.Authorization.Application.Groups.SAS;
+namespace rna.Authorization.Application.Groups.Sas;
 
 public class CreateInstitutionalSignUpSAS : IRequest<Unit>
 {

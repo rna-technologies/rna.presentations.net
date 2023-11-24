@@ -1,13 +1,13 @@
-﻿namespace rna.Authorization.Application.Groups.SAS;
+﻿namespace rna.Authorization.Application.Groups.Sas;
 
-public class UpdateBasicInstitutionalGroupSas : IRequest<Unit>
+public class UpdateBasicInstitutionalGroupSas : IRequest<IActionResult>
 {
     public required BasicInstitutionalGroupSasModel Model { get; set; }
 
 
-    public class UpdateBasicInstitutionalGroupSasHandler(IServiceProvider serviceProvider) : BaseRequestHandler<UpdateBasicInstitutionalGroupSas, Unit>(serviceProvider)
+    public class UpdateBasicInstitutionalGroupSasHandler(IServiceProvider serviceProvider) : BaseRequestHandler<UpdateBasicInstitutionalGroupSas, IActionResult>(serviceProvider)
     {
-        public override async Task<Unit> Handle(UpdateBasicInstitutionalGroupSas request, CancellationToken cancellationToken)
+        public override async Task<IActionResult> Handle(UpdateBasicInstitutionalGroupSas request, CancellationToken cancellationToken)
         {
             var model = request.Model;
 
@@ -75,7 +75,7 @@ public class UpdateBasicInstitutionalGroupSas : IRequest<Unit>
 
             await Identity.UpdateAsync(superGroup);
 
-            return Unit.Value;
+            return new OkResult();
         }
 
 

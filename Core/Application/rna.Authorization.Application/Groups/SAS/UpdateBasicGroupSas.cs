@@ -1,12 +1,12 @@
-﻿namespace rna.Authorization.Application.Groups.SAS;
+﻿namespace rna.Authorization.Application.Groups.Sas;
 
-public class UpdateBasicGroupSas : IRequest<Unit>
+public class UpdateBasicGroupSas : IRequest<IActionResult>
 {
     public required BasicGroupSasModel Model { get; set; } = null!;
 
-    public class UpdateBasicGroupSasHandler(IServiceProvider serviceProvider) : BaseRequestHandler<UpdateBasicGroupSas, Unit>(serviceProvider)
+    public class UpdateBasicGroupSasHandler(IServiceProvider serviceProvider) : BaseRequestHandler<UpdateBasicGroupSas, IActionResult>(serviceProvider)
     {
-        public override async Task<Unit> Handle(UpdateBasicGroupSas request, CancellationToken cancellationToken)
+        public override async Task<IActionResult> Handle(UpdateBasicGroupSas request, CancellationToken cancellationToken)
         {
             var model = request.Model;
             model.ThrowArgumentExceptionFor(r => r.Id is 0, "Please specify a branch");
@@ -57,7 +57,7 @@ public class UpdateBasicGroupSas : IRequest<Unit>
 
             await Identity.UpdateAsync(group).ConfigureAwait(false);
 
-            return Unit.Value;
+            return new OkResult();
         }
     }
 }

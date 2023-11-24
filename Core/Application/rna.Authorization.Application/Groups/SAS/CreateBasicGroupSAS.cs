@@ -4,20 +4,20 @@ using rna.Core.Infrastructure.Logics.Users.DefaultUsers.Helpers;
 using rna.Authorization.Validator;
 using rna.Authorization.Application.Models;
 
-namespace rna.Authorization.Application.Groups.SAS;
+namespace rna.Authorization.Application.Groups.Sas;
 
 /// <summary>
 /// Institutional Group or Branch can only be created by a user if that user is already a part of a branch i.e. HQ
 /// This means Super Group, Group Location, and Group Profile, and also a sub Group like HQ must have already been created
 /// Note that Company is a Super Group and a HQ is a sub Group of Company
 /// </summary>
-public class CreateBasicGroupSAS : IRequest<Unit>
+public class CreateBasicGroupSas : IRequest<IActionResult>
 {
     public required BasicGroupSasModel Model { get; set; } = null!;
 
-    public class CreateBasicGroupSASHandler(IServiceProvider serviceProvider) : BaseRequestHandler<CreateBasicGroupSAS, Unit>(serviceProvider)
+    public class CreateBasicGroupSasHandler(IServiceProvider serviceProvider) : BaseRequestHandler<CreateBasicGroupSas, IActionResult>(serviceProvider)
     {
-        public override async Task<Unit> Handle(CreateBasicGroupSAS request, CancellationToken cancellationToken)
+        public override async Task<IActionResult> Handle(CreateBasicGroupSas request, CancellationToken cancellationToken)
         {
             var model = request.Model;
             model.ThrowArgumentExceptionFor(r => r.Name is null or "", "Please specify a 'Name'");
@@ -53,7 +53,7 @@ public class CreateBasicGroupSAS : IRequest<Unit>
 
             await Identity.CreateAsync(group).ConfigureAwait(false);
 
-            return Unit.Value;
+            return group.Id > 0 ? new OkResult() : new BadRequestObjectResult("Group was not saved");
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using rna.Authorization.Application.Groups.SAS;
+using rna.Authorization.Application.Groups.Sas;
 using rna.Authorization.Application.TellerRegisters;
 using rna.Authorization.Application.Tellers;
 
-namespace rna.Authentication.api.Controllersz
+namespace rna.Authentication.api.Controllers
 {
     [AllowAnonymous]
     [ApiController]
