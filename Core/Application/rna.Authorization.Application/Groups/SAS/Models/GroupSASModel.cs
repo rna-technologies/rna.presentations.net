@@ -12,40 +12,51 @@ public enum GroupTypeSAS
 {
     Company, HQ, Branch
 }
-public class GroupSASModel
+
+
+public class BasicInstitutionalGroupSasModel
 {
     public int Id { get; set; }
     //public int AppId { get; set; }
     public int? GroupLocationId { get; set; }
     public int? GroupProfileId { get; set; }
-    public int? SuperGroupId { get; set; } = null;
-    public string Description { get; set; }
-    public string Name { get; set; }
-    public string Type { get; set; }
-}
+    //public int? SuperGroupId { get; set; } = null;
+    public string Description { get; set; } = null!;
+    public string Name { get; set; } = null!;
+    public string Type { get; set; } = null!;
 
-
-public class DefaultGroupSASModel
-{
-    public int Id { get; set; }
-    //public int AppId { get; set; }
-    public string Description { get; set; }
-    public string Name { get; set; }
-    public string? GroupProfileName { get; set; }
-    public string? GroupProfileDescription { get; set; }
+    public required string GroupProfileName { get; set; } = null!;
+    public required string GroupProfileDescription { get; set; } = null!;
     public string? GroupProfilePhoneNumber { get; set; }
     public string? GroupProfilePhoneNumber2 { get; set; }
     public string? GroupProfilePhoneNumber3 { get; set; }
+    public string? GroupProfilePhoneNumber4 { get; set; }
+    public string? GroupProfileType { get; set; }
     public string? GroupProfileEmail { get; set; }
     public string? GroupProfilePostal { get; set; }
     public string? GroupProfileWebsite { get; set; }
-    public string? GroupProfileType { get; set; }
+
+
+
+    public string? GroupLocationCountry { get; set; }
+    public string? GroupLocationState { get; set; }
+    public string? GroupLocationCity { get; set; }
+    public string? GroupLocationSuburb { get; set; }
     public string? GroupLocationPlace { get; set; }
-    public int? SuperGroupId { get; set; } = null;
 }
 
 
-public class DefaultInstitutionalUserSASModel : BaseSignUpModel, IUserSignUpModel
+public class BasicGroupSasModel
+{
+    public int Id { get; set; }
+    //public int AppId { get; set; }
+    public string? Description { get; set; }
+    public required string Name { get; set; }
+    public string? Type { get; set; }
+}
+
+
+public class BasicInstitutionalUserSASModel : BaseSignUpModel, IUserSignUpModel
 {
 
     public string? Id { get; set; }
@@ -62,9 +73,11 @@ public class DefaultInstitutionalUserSASModel : BaseSignUpModel, IUserSignUpMode
     //public string? Password { get; set; }
 
     public required string CompanyName { get; set; } = null!;
+    public string? CompanyDescription { get; set; } = string.Empty;
     public string? CompanyPhoneNumber { get; set; }
     public string? CompanyPhoneNumber2 { get; set; }
     public string? CompanyPhoneNumber3 { get; set; }
+    public string? CompanyPhoneNumber4 { get; set; }
     public string? CompanyType { get; set; }
     public string? CompanyEmail { get; set; }
     public string? CompanyPostal { get; set; }

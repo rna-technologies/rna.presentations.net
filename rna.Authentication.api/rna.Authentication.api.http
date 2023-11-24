@@ -1,0 +1,24 @@
+﻿@rna.Authentication.api_HostAddress = http://[::1]:8093
+
+POST {{rna.Authentication.api_HostAddress}}/{appName}/basicinstitutionalsignup
+Content-Type: application/json
+{
+  //DefaultInstitutionalUserSASModel
+  firstName:"James",
+  lastName: "Joe",
+  email: "jamesjoe@gmail.com",
+  phoneNumber:"0266777555",
+  zipCode: "233",
+  companyName:"Synergy Afriq",
+  companyPhoneNumber:"0302454566",
+  password:"glory@123",
+  verifyPassword:"glory@123",
+  signUpToken:"hpAQm8zOUotXCmPC8WJOtyynNvmfpLOws4iuZdNHypO5IgWLQvIQOd3ufn4tkMKHnqhw3Q5n7t9CKbRCLm7TCEGzAR8D183MzhmI4p0ih2XEOPQg1dqgZxd6s7mAS1x8LpDuO7b8r/vLJim7UIApYTdR9Y7DoUIB0d/eWtLG+oA="
+}
+
+###
+
+GET {{rna.Authentication.api_HostAddress}}/{appName}/basicgroupsas
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDNkYjFmNy1hMTdkLTQwYzYtOTkxNi1jMzMwNGI1NzU4MzkiLCJqdGkiOiIxODhjOTJlNS0yYmE3LTQ1OWYtODkyYi01NWVhOTIzMzJiZTYiLCJpZCI6IjY0M2RiMWY3LWExN2QtNDBjNi05OTE2LWMzMzA0YjU3NTgzOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJqYW1lc2pvZUBnbWFpbC5jb20iLCJleHAiOjE3MDEyNTgxOTIsImlzcyI6InJuYS5vdHdvLmhvc3QiLCJhdWQiOiJybmEub3R3by5ob3N0In0.gj0EvmnrlU-i9Qb_YI0XNoajsF3ikXW1_U3gKSgdLBE
+
+###
