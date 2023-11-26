@@ -7,7 +7,7 @@ namespace rna.Authentication.api.Controllers
 {
     [ApiController]
     [AllowAnyDocumentCategory]
-    public class BasicGroupSasController : RnaBaseController
+    public class BranchSasController : RnaBaseController
     {
         [HttpGet("institution")]
         public async Task<IActionResult> GetInstitution([FromQuery] UrlQueryParams param)

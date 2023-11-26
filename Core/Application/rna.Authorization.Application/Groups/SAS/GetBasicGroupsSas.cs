@@ -23,9 +23,9 @@ public class GetBasicGroupsSas : IRequest<IActionResult>
 
             if (superGroup == null) this.ThrowException("User's branch has no Head branch or company");
 
-            var companyGroups = Identity.Set<Group>().Where(g => g.SuperGroupId == superGroup.Id)
+            var companyGroups = await Identity.Set<Group>().Where(g => g.SuperGroupId == superGroup.Id)
                 .Map<BasicGroupSasModel>()
-                .ToListAsync();
+                .ToListAsync(cancellationToken: cancellationToken).ConfigureAwait(false);
 
             return companyGroups.ToOk();
         }

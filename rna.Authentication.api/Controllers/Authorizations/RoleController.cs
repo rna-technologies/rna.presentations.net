@@ -9,7 +9,7 @@ namespace rna.Authentication.api.Controllers.Authorizations;
 public class RoleController : RnaBaseController
 {
 
-    public RoleController() : base(new string[] { "name" }) { }
+    public RoleController() : base(["name"]) { }
 
     [HttpGet]
     [AllowAnyDocumentCategory]
@@ -45,10 +45,10 @@ public class RoleController : RnaBaseController
     {
         var roleDocumentIds = Identity.Set<DocumentClaim>().Get()
             .Where(d => d.RoleId == roleId && d.DocumentId != null)
-            .Select(d => d.DocumentId.ToString()).ToArray();
+            .Select(d => d.DocumentId).ToArray();
 
         appId = appId ?? Scope.AppId;
-        var pagable = Identity.Set<Document>().Get()
+        var pagable = Identity.Set<Document>()//.Get()
             .Where(d => d.AppId == appId)
             .WhereNotAny(nameof(Document.Id), roleDocumentIds)
             .Select(d => new DocumentModel

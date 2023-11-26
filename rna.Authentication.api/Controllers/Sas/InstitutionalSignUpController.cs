@@ -7,7 +7,7 @@ namespace rna.Authentication.api.Controllers
 {
     [AllowAnonymous]
     [ApiController]
-    public class BasicInstitutionalSignUpController : RnaBaseController
+    public class InstitutionalSignUpController : RnaBaseController
     {
         [HttpPost]
         [AllowAnyDocumentCategory]
