@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace rna.Authorization.Application.Apps.Models
+﻿namespace rna.Authorization.Application.Apps.Models
 {
     //public class AppModel //: App
     //{

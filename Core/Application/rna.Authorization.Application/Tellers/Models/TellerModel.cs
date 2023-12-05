@@ -1,4 +1,4 @@
-﻿using rna.Core.Identity.Infrastructure.Extensions.RelatedUser.Interfaces;
+﻿using rna.Core.Identity.Domain.Base.Interfaces;
 
 namespace rna.Authorization.Application.Tellers;
 

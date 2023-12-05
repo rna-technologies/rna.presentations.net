@@ -1,10 +1,4 @@
-﻿using rna.Core.Infrastructure.Logics.Users.Models.EditModels;
-using rna.Core.Identity.Domain;
-using rna.Core.Infrastructure.Logics.Users.DefaultUsers.Helpers;
-using rna.Authorization.Validator;
-using rna.Authorization.Application.Models;
-
-namespace rna.Authorization.Application.Groups.Sas;
+﻿namespace rna.Authorization.Application.Groups.Sas;
 
 /// <summary>
 /// Institutional Group or Branch can only be created by a user if that user is already a part of a branch i.e. HQ

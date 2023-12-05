@@ -1,10 +1,4 @@
-﻿using rna.Core.Identity.Domain;
-using rna.Core.Infrastructure.Logics.Users.Models.EditModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using rna.Core.Infrastructure.Logics.Users.Models.EditModels;
 
 namespace rna.Authorization.Application.Groups.Sas;
 
