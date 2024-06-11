@@ -14,6 +14,8 @@ RnaWebApplication.Run(args, o => o
 .AddApplicationAssembly(Assembly.GetExecutingAssembly())
 .AllowAnyCorsOrigin()
 .AddRnaCommandHandlers()
+.AddRnaIdentity<SuiteIdentityContext,User>("")
+//.AddRnaIdentity<SuiteIdentityContext,User>()
 .AddAuthentication()
 .AddSms()
 .AddEmail()
