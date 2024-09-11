@@ -1,6 +1,4 @@
-using rna.Core.Base.Infrastructure.Model.ScopeModels;
 using rna.Core.Infrastructure.Logics.GroupAccess;
-using rna.Core.Infrastructure.Logics.GroupAccessz;
 
 namespace rna.Authentication.api.Controllers
 {
