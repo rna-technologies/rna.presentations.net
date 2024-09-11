@@ -1,5 +1,6 @@
 using rna.Core.Base.Infrastructure.Model.ScopeModels;
 using rna.Core.Infrastructure.Logics.GroupAccess;
+using rna.Core.Infrastructure.Logics.GroupAccessz;
 
 namespace rna.Authentication.api.Controllers
 {
@@ -13,6 +14,16 @@ namespace rna.Authentication.api.Controllers
         {
             return Ok(await Mediator.Send(new GetAuthorizedCachedScope { }).ConfigureAwait(false));
         }
+
+        [HttpGet("scope")]
+        public async Task<IActionResult> GetScope([FromQuery] string name)
+        {
+            return Ok(await Mediator.Send(new GetAuthorizedScopes
+            {
+                AppName = name
+            }).ConfigureAwait(false));
+        }
+
 
         [HttpGet("apps")]
         public async Task<IActionResult> GetUserApps([FromQuery] UrlQueryParams param)
