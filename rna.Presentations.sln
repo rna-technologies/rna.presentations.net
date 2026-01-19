@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.1.32210.238
+# Visual Studio Version 18
+VisualStudioVersion = 18.3.11408.92 d18.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rna.Authentication.api", "rna.Authentication.api\rna.Authentication.api.csproj", "{EC29B69A-76CA-4A48-B6BB-D22C0872012A}"
 EndProject
@@ -24,6 +24,18 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rna.Base.Extensions", "..\rna.Packages\Tools\Base\rna.Base.Extensions\rna.Base.Extensions.csproj", "{A14AAB74-AF77-4379-8F34-41FEC2395009}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rna.Core.Domain", "..\rna.Packages\Core\Domain\rna.Core.Domain\rna.Core.Domain.csproj", "{F4EF6664-B619-48D6-831B-4D5B76E28111}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rna.Exceptions.Extensions", "..\rna.packages\Tools\Base\rna.Exceptions.Extensions\rna.Exceptions.Extensions.csproj", "{80DBD4FB-5635-7C71-A7AB-BC963BD446BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rna.Authorization.Validator", "..\rna.packages\Tools\KeyGenerator\rna.Authorization.Validator\rna.Authorization.Validator.csproj", "{70E736B3-5A94-C697-335F-60D72311DCA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rna.Authorization.Base", "..\rna.packages\Tools\KeyGenerator\rna.Authorization.Base\rna.Authorization.Base.csproj", "{4E2296C6-35C3-40D4-D8E3-8B2DB75FCEA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rna.Filters.Models", "..\rna.packages\Tools\Filters\rna.Filters.Models\rna.Filters.Models.csproj", "{18BF41D3-51A8-0F93-A9B7-0A67D333FA78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rna.Core.GenericDocumentProcessing.Domain", "..\rna.packages\Core\Domain\rna.Core.GenericFormProcessing.Domain\rna.Core.GenericDocumentProcessing.Domain.csproj", "{AE1967F7-0953-C864-BF76-7D2614B6F3C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rna.Core.Resource.Infrastructure", "..\rna.packages\Core\Infrastructure\Base\rna.Core.Resource.Infrastructure\rna.Core.Resource.Infrastructure.csproj", "{87C11B1D-F374-3573-5A66-4569FC8D97CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +79,30 @@ Global
 		{F4EF6664-B619-48D6-831B-4D5B76E28111}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4EF6664-B619-48D6-831B-4D5B76E28111}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4EF6664-B619-48D6-831B-4D5B76E28111}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80DBD4FB-5635-7C71-A7AB-BC963BD446BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80DBD4FB-5635-7C71-A7AB-BC963BD446BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80DBD4FB-5635-7C71-A7AB-BC963BD446BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80DBD4FB-5635-7C71-A7AB-BC963BD446BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70E736B3-5A94-C697-335F-60D72311DCA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70E736B3-5A94-C697-335F-60D72311DCA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70E736B3-5A94-C697-335F-60D72311DCA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70E736B3-5A94-C697-335F-60D72311DCA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E2296C6-35C3-40D4-D8E3-8B2DB75FCEA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E2296C6-35C3-40D4-D8E3-8B2DB75FCEA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E2296C6-35C3-40D4-D8E3-8B2DB75FCEA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E2296C6-35C3-40D4-D8E3-8B2DB75FCEA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18BF41D3-51A8-0F93-A9B7-0A67D333FA78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18BF41D3-51A8-0F93-A9B7-0A67D333FA78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18BF41D3-51A8-0F93-A9B7-0A67D333FA78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18BF41D3-51A8-0F93-A9B7-0A67D333FA78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE1967F7-0953-C864-BF76-7D2614B6F3C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE1967F7-0953-C864-BF76-7D2614B6F3C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE1967F7-0953-C864-BF76-7D2614B6F3C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE1967F7-0953-C864-BF76-7D2614B6F3C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87C11B1D-F374-3573-5A66-4569FC8D97CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87C11B1D-F374-3573-5A66-4569FC8D97CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87C11B1D-F374-3573-5A66-4569FC8D97CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87C11B1D-F374-3573-5A66-4569FC8D97CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
