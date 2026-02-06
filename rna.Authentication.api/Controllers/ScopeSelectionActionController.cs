@@ -1,3 +1,4 @@
+using NPOI.SS.UserModel;
 using rna.Core.Infrastructure.Logics.GroupAccess;
 
 namespace rna.Authentication.api.Controllers
@@ -34,12 +35,12 @@ namespace rna.Authentication.api.Controllers
 
 
         [HttpGet("groups")]
-        public async Task<IActionResult> GetUserGroups([FromQuery] int appId, [FromQuery] int accountTypeId, [FromQuery] UrlQueryParams param)
+        public async Task<IActionResult> GetUserGroups([FromQuery] int appId, [FromQuery] int departmentId, [FromQuery] UrlQueryParams param, [FromQuery] int? accountTypeId = null)
         {
             return Ok(await Mediator.Send(new GetAuthorizedGroupPage
             {
                 AppId = appId,
-                DepartmentId = accountTypeId,
+                DepartmentId = departmentId,
                 Params = param
             }).ConfigureAwait(false));
         }
